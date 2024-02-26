@@ -1,11 +1,11 @@
-let bUrl ='http://localhost:3000'
+let bUrl 
 
-// // Kiểm tra xem chúng ta có ở trong môi trường client không
-// if (typeof window !== 'undefined') {
-//     baseUrl = window.location.origin;
-// } else { 
-//     baseUrl = 'http://localhost:3000';
-// }
+// Kiểm tra xem chúng ta có ở trong môi trường client không
+if (typeof window !== 'undefined') {
+    bUrl = window.location.origin;
+} else { 
+    bUrl = 'http://localhost:3000';
+}
 
 const BASE_URL_API = `${bUrl}/api`
 
