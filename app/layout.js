@@ -12,12 +12,11 @@ export const metadata = {
   icons: [{ rel: "icon", url: Favicon.src }],
 };
 
-export default function RootLayout({ children ,params}) {
+export default function RootLayout({ children, params }) {
   return (
     <html lang="en">
       <body>
-      <Header />
-      
+        <Header />
         <div className="main-body">{children}</div>
         <Footer />
       </body>

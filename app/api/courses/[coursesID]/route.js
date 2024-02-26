@@ -26,7 +26,6 @@ export async function GET(request, params) {
     );
     return NextResponse.json({ data: results, totalPages, totalCount,resultsNameLessons }, { status: 200 });
   } catch (err) {
-    console.log(err);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

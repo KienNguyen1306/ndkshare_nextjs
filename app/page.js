@@ -5,7 +5,6 @@ import Pagination from "./components/Pagination";
 import { usePagination } from "./hook/usePagination";
 import Search from "./components/search";
 export default function Home() {
-  
   const {
     datas,
     totalPages,
@@ -16,6 +15,7 @@ export default function Home() {
     handlePrevPage,
   } = usePagination( {initialUrl:"/modgames"});
 
+  
   return (
     <div>
        <Search type={1}/>

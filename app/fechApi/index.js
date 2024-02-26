@@ -5,13 +5,11 @@ const callAPI = async (
   setTalPages,
   settotalItem,
   setNameLessonsCourses,
-  type
+ 
 ) => {
+  console.log( 'process.env.HOST',BASE_URL)
   try {
     let typeUrl = `${BASE_URL}/${url}`;
-    if(type ===1){
-      typeUrl='http://localhost:3000/api/modgames/searchgame?name=2&page=1'
-    }
     const res = await fetch(typeUrl);
     const data = await res.json();
     setDatas(data.data);
