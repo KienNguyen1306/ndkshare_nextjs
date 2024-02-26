@@ -13,7 +13,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children ,params}) {
-  console.log('params',params)
   return (
     <html lang="en">
       <body>

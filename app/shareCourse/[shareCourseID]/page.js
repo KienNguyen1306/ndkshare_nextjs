@@ -25,9 +25,9 @@ function CoureseDetail() {
       <div className="video_main">
       <Search type={2}/>
         <h2>Có {totalItems} bài học</h2>
-        {datas.map((item) => {
+        {datas.map((item,index) => {
           return (
-            <div>
+            <div key={index}>
               <VideoItem item={item} />
             </div>
           );
@@ -46,7 +46,7 @@ function CoureseDetail() {
       <ul className="list_lessons">
         {nameLessonsCourses.map((item, index) => {
           return (
-            <li
+            <li key={index}
               onClick={() => {
                 handleClickPage(index + 1);
               }}

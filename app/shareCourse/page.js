@@ -1,10 +1,7 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import ItemMain from "../components/item";
-import { callAPI } from "../fechApi";
-import URL from "../constans/baseUrl";
-import Loading from "./loading";
+
 import { usePagination } from "../hook/usePagination";
 import Search from "../components/search";
 function ShareCourse() {
@@ -24,8 +21,8 @@ function ShareCourse() {
       <h4>ShareCourse: Có :{totalItems} khóa học </h4>
       <div className="products">
         <div className="body">
-          {datas.map((item) => {
-            return <ItemMain item={item} collum />;
+          {datas.map((item,index) => {
+            return <ItemMain key={index} item={item} collum />;
           })}
         </div>
 

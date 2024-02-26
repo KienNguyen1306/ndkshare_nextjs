@@ -12,7 +12,7 @@ function ModGameDetail() {
   
   useEffect(()=>{
     callAPI(`/modgames/${params.modgameid}`,setDetail)
-  },[])
+  },[params.modgameid])
   return (
     <div className="modgamedetai">
       <Search type={1}/>

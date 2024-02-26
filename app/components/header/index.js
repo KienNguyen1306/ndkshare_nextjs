@@ -25,7 +25,7 @@ function Header() {
         <nav className={`header_nav ${show ? "" : "show"}`}>
           <div className="admin mobie">
             <div className="body">
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="icon"/>
               <Link href="/contact" className="admin-name">
                 Kiên Nguyễn
               </Link>
@@ -42,7 +42,7 @@ function Header() {
         </nav>
         <div className="admin">
           <div className="body">
-            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  alt="icon"/>
             <Link href="/contact" className="admin-name">
               Kiên Nguyễn
             </Link>
