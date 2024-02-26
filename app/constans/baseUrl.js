@@ -1,3 +1,3 @@
-const URL = 'ndkshare.vercel.app/api'
+const URL = 'https://ndkshare.vercel.app/api'
 
 export default URL
