@@ -1,3 +1,3 @@
-const URL = 'http://localhost:3000/api'
+const URL = 'ndkshare.vercel.app/api'
 
 export default URL
