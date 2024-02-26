@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import connection from "@/app/db/db";
 
 export async function GET(request, params) {
+  const searchParams  = request.nextUrl.searchParams
   try {
     let id = params.params.coursesID;
-    const { searchParams } = new URL(request.url);
+
     let page = parseInt(searchParams.get("page")) || 1;
     let perPage = 1;
     let offset = (page - 1) * perPage;
