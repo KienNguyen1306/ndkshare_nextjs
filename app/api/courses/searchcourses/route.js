@@ -3,7 +3,7 @@ import connection from "@/app/db/db";
 
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url,request.url);
+    const { searchParams } = new URL(request.url);
 
     const page = parseInt(searchParams.get('page')) || 1;
     const perPage = 3; // Số mục trên mỗi trang
@@ -32,10 +32,9 @@ export async function GET(request) {
     const totalPages = Math.ceil(totalCount / perPage);
 
     // Thực hiện truy vấn để lấy dữ liệu cho trang hiện tại
-    dataQuery += " LIMIT ?, ?";
-    const [results, fields] = await connection.execute(
-      dataQuery,
-      [offset, perPage]
+    dataQuery += `LIMIT ${offset}, ${perPage}`;
+    const [results] = await connection.execute(
+      dataQuery
     );
     // Trả về kết quả bao gồm cả tổng số trang và số mục trên mỗi trang
     return NextResponse.json({ data: results, totalPages, totalCount }, { status: 200 });

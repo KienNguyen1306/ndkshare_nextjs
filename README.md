@@ -108,3 +108,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
  class="z-10 flex items-center justify-center px-3 h-8 leading-tight  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+
+
+
+# HOST= "sql.freedb.tech"
+# USER= "freedb_bosschua"
+# DATABASE="freedb_ndkshare"
+# PASSWORD = "qkgBV52ZtnDz!UM"
+
+
+# PASSWORD = ""

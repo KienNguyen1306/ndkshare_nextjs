@@ -11,9 +11,9 @@ function VideoItem({ item }) {
           height="315"
           src={item?.linkvideo}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          allowFullScreen
           loading="lazy"
         ></iframe>
         <h3 className="video_name">{item?.name}</h3>
