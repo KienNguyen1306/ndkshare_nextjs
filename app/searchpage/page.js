@@ -29,7 +29,7 @@ function SearchPage() {
   return (
     <div className="products colums">
       <Search type={type} />
-      <h5>GAME MOD BY NDK : Có : {totalItems} game</h5>
+      <h5>GAME MOD BY NDK : Có : {totalItems} Kết quả tìm kiếm từ {k}</h5>
       <div className="body">
         {datas.map((item, index) => {
           return (

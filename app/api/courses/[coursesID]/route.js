@@ -4,7 +4,8 @@ import connection from "@/app/db/db";
 export async function GET(request, params) {
   try {
     let id = params.params.coursesID;
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url,request.url);
+
     let page = parseInt(searchParams.get('page')) || 1;
     let perPage = 1;
 

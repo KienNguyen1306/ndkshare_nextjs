@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import connection from "@/app/db/db";
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url,request.url);
+
     const page = parseInt(searchParams.get('page')) || 1;
     const perPage = 5; // Số mục trên mỗi trang
     const offset = (page - 1) * perPage;

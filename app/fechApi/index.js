@@ -7,7 +7,6 @@ const callAPI = async (
   setNameLessonsCourses,
  
 ) => {
-  console.log( 'process.env.HOST',BASE_URL)
   try {
     let typeUrl = `${BASE_URL}/${url}`;
     const res = await fetch(typeUrl);

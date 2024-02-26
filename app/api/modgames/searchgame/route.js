@@ -3,11 +3,12 @@ import connection from "@/app/db/db";
 
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page')) || 1;
+    const { searchParams } = new URL(request.url,request.url);
+
+    const page = parseInt(searchParams.get("page")) || 1;
     const perPage = 3; // Số mục trên mỗi trang
     const offset = (page - 1) * perPage;
-    const searchName = searchParams.get('k'); // Lấy tên cần tìm kiếm
+    const searchName = searchParams.get("k"); // Lấy tên cần tìm kiếm
 
     let totalCountQuery = "SELECT COUNT(*) as totalCount FROM `modgames`";
     let dataQuery = "SELECT * FROM `modgames`";
@@ -32,13 +33,16 @@ export async function GET(request) {
 
     // Thực hiện truy vấn để lấy dữ liệu cho trang hiện tại
     dataQuery += " LIMIT ?, ?";
-    const [results, fields] = await connection.execute(
-      dataQuery,
-      [offset, perPage]
-    );
+    const [results, fields] = await connection.execute(dataQuery, [
+      offset,
+      perPage,
+    ]);
     // Trả về kết quả bao gồm cả tổng số trang và số mục trên mỗi trang
-    return NextResponse.json({ data: results, totalPages, totalCount }, { status: 200 });
+    return NextResponse.json(
+      { data: results, totalPages, totalCount },
+      { status: 200 }
+    );
   } catch (err) {
-    return NextResponse.error('Error message', 500);
+    return NextResponse.error("Error message", 500);
   }
 }
