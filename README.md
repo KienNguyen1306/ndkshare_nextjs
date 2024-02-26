@@ -34,3 +34,77 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+ <div className="flex flex-col gap-5 m-3">
+      {/* Comment Container */}
+      <div>
+        <div className="flex w-full justify-between border rounded-md">
+          <div className="p-3">
+            <div className="flex gap-3 items-center">
+              <img
+                src="https://avatars.githubusercontent.com/u/22263436?v=4"
+                className="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400"
+              />
+              <h3 className="font-bold">
+                User 1
+                <br />
+                {/* <span className="text-sm text-gray-400 font-normal">Level 1</span> */}
+              </h3>
+            </div>
+            <p className="text-gray-600 mt-2">this is sample commnent</p>
+            <button className="text-right text-blue-500">Reply</button>
+          </div>
+
+        </div>
+        {/* Reply Container  */}
+        <div className="text-gray-300 font-bold pl-14">|</div>
+        <div className="flex justify-between border ml-5  rounded-md">
+          <div className="p-3">
+            <div className="flex gap-3 items-center">
+              <img
+                src="https://avatars.githubusercontent.com/u/22263436?v=4"
+                className="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400"
+              />
+              <h3 className="font-bold">
+                User 2
+                <br />
+                <span className="text-sm text-gray-400 font-normal">Level 1</span>
+              </h3>
+            </div>
+            <p className="text-gray-600 mt-2">this is sample commnent</p>
+          </div>
+        </div>
+      </div>
+
+
+      {/*  Comment 2  */}
+      <div className="flex w-full justify-between border rounded-md">
+        <div className="p-3">
+          <div className="flex gap-3 items-center">
+            <img
+              src="https://avatars.githubusercontent.com/u/22263436?v=4"
+              className="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400"
+            />
+            <h3 className="font-bold">
+              User 4
+              <br />
+              <span className="text-sm text-gray-400 font-normal">Level 1</span>
+            </h3>
+          </div>
+          <p className="text-gray-600 mt-2">this is sample commnent</p>
+          <button className="text-right text-blue-500">Reply</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+ class="z-10 flex items-center justify-center px-3 h-8 leading-tight  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"

@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,16 +18,57 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
+html {
+  font-family: "Anta" !important;
+}
+
+.main-body {
+  padding: 20px;
+}
+
+
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 2);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.title_h2 {
+  font-weight: 700;
+  font-size: 16px;
+  color: rgb(233, 115, 115);
+}
+
+.title_h6 {
+  padding: 5px 0;
+}
+
+.list_lessons {
+  list-style: auto;
+  font-size: 14px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.list_lessons li:hover {
+  opacity: 0.8;
+}
+
+.list_lessons li {
+  padding-bottom: 8px;
+}
+
+button {
+  color: aqua !important;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
+

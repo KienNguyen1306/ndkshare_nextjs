@@ -1,0 +1,89 @@
+.header {
+  padding: 10px 10px;
+  background-color: #313742;
+}
+
+.header .body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .logo {
+  width: 260px;
+  height: 40px;
+}
+
+.header .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header_nav-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header_nav-item a {
+  color: aliceblue;
+  text-align: center;
+  text-transform: none;
+}
+
+.admin .body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin .body img {
+  width: 30px;
+  height: 30px;
+  border-radius: 99999999999999999;
+  object-fit: cover;
+}
+
+.admin-name {
+  color: aliceblue;
+}
+
+.admin.mobie {
+  display: none;
+  padding: 20px;
+}
+.admin.mobie .body {
+  justify-content: center;
+  gap: 10px;
+}
+
+.bar_menu {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .admin {
+    display: none;
+  }
+  .bar_menu {
+    display: block;
+  }
+  .admin.mobie {
+    display: block;
+  }
+  .header_nav.show{
+    display: none;
+    
+  }
+  .header_nav{
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #313742;
+    z-index: 99999999999999999;
+  }
+  .header_nav-item {
+    flex-direction: column;
+    padding: 30px;
+  }
+}
