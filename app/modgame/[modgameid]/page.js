@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import "./modgame.css";
 import Comment from "@/app/components/comment";
 import { useEffect, useState } from "react";
-import { callAPI } from "@/app/fechApi";
+import { callAPI } from "@/fechApi";
 import Search from "@/app/components/search";
 
 function ModGameDetail() {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise';
-import connection from "@/app/db/db";
+import connection from "@/db/db";
 
 export async function GET(request,params) {
     try {

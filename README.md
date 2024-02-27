@@ -118,3 +118,22 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 # PASSWORD = ""
+
+
+
+   // Lấy thông tin người dùng từ token (ví dụ: username)
+    // const { username } = decodedToken;
+
+    // // Truy vấn cơ sở dữ liệu để lấy thông tin người dùng
+    // const [rows, fields] = await connection.execute(
+    //   `SELECT * FROM users WHERE username = ${username}`
+    // );
+
+    // if (rows.length > 0) {
+    //   // Trả về thông tin người dùng
+    //   return new Response(JSON.stringify(rows[0]), { status: 200 });
+    // } else {
+    //   return new Response(JSON.stringify({ message: "User not found" }), {
+    //     status: 404,
+    //   });
+    // }

@@ -1,5 +1,5 @@
 "use client";
-import { usePagination } from "../hook/usePagination";
+import { usePagination } from "../../hook/usePagination";
 import ItemMain from "../components/item";
 import Pagination from "../components/Pagination";
 import { useSearchParams } from "next/navigation";

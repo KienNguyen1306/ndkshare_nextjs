@@ -2,7 +2,7 @@
 import Pagination from "../components/Pagination";
 import ItemMain from "../components/item";
 
-import { usePagination } from "../hook/usePagination";
+import { usePagination } from "../../hook/usePagination";
 import Search from "../components/search";
 function ShareCourse() {
   const {

@@ -3,8 +3,8 @@
 import Pagination from "@/app/components/Pagination";
 import Search from "@/app/components/search";
 import VideoItem from "@/app/components/videosItem";
-import { callAPI } from "@/app/fechApi";
-import { usePagination } from "@/app/hook/usePagination";
+import { callAPI } from "@/fechApi";
+import { usePagination } from "@/hook/usePagination";
 import { useParams } from "next/navigation";
 
 function CoureseDetail() {

@@ -1,9 +1,8 @@
-import "./globals.css";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import Search from "./components/search";
 
+import LayoutDetail from "./components/LayoutDetail";
+import "./globals.css";
 import Favicon from "/public/favicon.ico";
+
 
 export const metadata = {
   title: "Game mod, game androi miễn phí, chia sẽ khóa khọc free",
@@ -12,14 +11,11 @@ export const metadata = {
   icons: [{ rel: "icon", url: Favicon.src }],
 };
 
-export default function RootLayout({ children, params }) {
+export default function RootLayout({ children }) {
+
   return (
-    <html lang="en">
-      <body>
-        <Header />
-        <div className="main-body">{children}</div>
-        <Footer />
-      </body>
-    </html>
+    <LayoutDetail>
+      <div className="main-body">{children}</div>
+    </LayoutDetail>
   );
 }
