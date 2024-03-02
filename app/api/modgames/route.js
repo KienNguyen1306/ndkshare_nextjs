@@ -18,7 +18,7 @@ export async function GET(request) {
 
     // Thực hiện truy vấn để lấy dữ liệu cho trang hiện tại
     const [results] = await connection.execute(
-      `SELECT * FROM modgames LIMIT ${offset}, ${perPage}`
+      `SELECT * FROM modgames ORDER BY id DESC LIMIT ${offset}, ${perPage}`
     );
 
     return NextResponse.json(
@@ -28,5 +28,35 @@ export async function GET(request) {
   } catch (err) {
     console.log("err", err);
     return NextResponse.error("Error message", 500);
+  }
+}
+
+
+
+
+export async function POST(request) {
+  try {
+    const requestBody = await request.json();
+
+    // Extract data from the request body
+    const { image, name, sub,link,version, mods} = requestBody;
+
+    // Your validation logic here
+    if (!image || !name || !sub || !link || !version || !mods) {
+      return NextResponse.error("Missing fields", 400);
+    }
+
+    // Your database insertion logic here
+    const [data] = await connection.execute(
+      `INSERT INTO modgames (image, name, sub, link, version, mods) VALUES ('${image}', '${name}','${sub}','${link}','${version}','${mods}')`
+    );
+
+    const [insertedData] = await connection.execute(
+      `SELECT * FROM modgames WHERE id = ${data.insertId}`
+    );
+    return NextResponse.json({ data: insertedData[0] , status: 201}, { status: 201 });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.error("Internal Server Error", 500);
   }
 }

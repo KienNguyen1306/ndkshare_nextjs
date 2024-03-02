@@ -9,7 +9,8 @@ function formatUrl(initialUrl, page) {
 }
 
 function saveCookie({ assetToken, resetToken }) {
-  var expirationDays = 30;
+  try {
+    var expirationDays = 30;
 
   // Tính toán ngày hết hạn
   var expirationDate = new Date();
@@ -18,6 +19,10 @@ function saveCookie({ assetToken, resetToken }) {
   // Lưu vào cookie bằng js-cookie
   Cookies.set("assetToken", assetToken, { expires: expirationDays, path: "/" });
   Cookies.set("resetToken", resetToken, { expires: expirationDays, path: "/" });
+  console.log('ok')
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 function getCookie(name) {

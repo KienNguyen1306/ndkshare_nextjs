@@ -5,21 +5,34 @@ import Search from "@/app/components/search";
 import VideoItem from "@/app/components/videosItem";
 import { callAPI } from "@/fechApi";
 import { usePagination } from "@/hook/usePagination";
+import { getDetailCourses } from "@/lib/shareCouresSlice";
 import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function CoureseDetail() {
   const params = useParams();
+  const datas = useSelector((state) => state.courses.lessons.list);
+  const totalPages = useSelector((state) => state.courses.lessons.totalPages);
+  const totalItems = useSelector((state) => state.courses.lessons.totalCount);
+  const nameLessons = useSelector((state) => state.courses.lessons.nameLessons);
+
+
+
+  const dispatch = useDispatch();
+
   const {
-    datas,
-    totalPages,
     currentPage,
-    totalItems,
-    nameLessonsCourses,
     handleClickPage,
     handleNextPage,
     handlePrevPage,
-  } = usePagination( {initialUrl:`/courses/${params.shareCourseID}`});
+  } = usePagination(totalPages);
 
+
+  useEffect(()=>{
+    dispatch(getDetailCourses({id:params.shareCourseID,page:currentPage}));
+  },[currentPage, dispatch, params.shareCourseID])
   return (
     <div>
       <div className="video_main">
@@ -44,7 +57,7 @@ function CoureseDetail() {
       </div>
       <h2 className="title_h2">Danh sách các bài học :</h2>
       <ul className="list_lessons">
-        {nameLessonsCourses.map((item, index) => {
+        {nameLessons.map((item, index) => {
           return (
             <li key={index}
               onClick={() => {

@@ -2,12 +2,15 @@
 import { usePathname } from "next/navigation";
 import Footer from "../footer";
 import Header from "../header";
-
+import AdminLayout from "./AdminLayout";
 function LayoutDetail({ children }) {
-
   const pathname = usePathname();
 
   if (pathname.startsWith("/admin")) {
+    return <AdminLayout>{children}</AdminLayout>;
+  }
+
+  if (pathname.startsWith("/login")) {
     return (
       <html lang="en">
         <body>

@@ -8,6 +8,7 @@
 .item.row {
   display: flex;
   gap: 15px;
+ 
 }
 .item.row .image {
   width: 120px;

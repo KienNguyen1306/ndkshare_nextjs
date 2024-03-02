@@ -1,18 +1,19 @@
 "use client" 
-import { useParams } from "next/navigation";
-import "./modgame.css";
 import Comment from "@/app/components/comment";
-import { useEffect, useState } from "react";
-import { callAPI } from "@/fechApi";
 import Search from "@/app/components/search";
+import { getDetailGame } from "@/lib/modgameSlice";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./modgame.css";
 
 function ModGameDetail() {
-  const [detail,setDetail]=useState()
   const params = useParams()
-  
+  const detail = useSelector((state) => state.modgame.gameDetail);
+  const dispatch = useDispatch();
   useEffect(()=>{
-    callAPI(`/modgames/${params.modgameid}`,setDetail)
-  },[params.modgameid])
+    dispatch(getDetailGame(params.modgameid))
+  },[dispatch, params.modgameid])
   return (
     <div className="modgamedetai">
       <Search type={1}/>

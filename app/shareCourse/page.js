@@ -4,24 +4,29 @@ import ItemMain from "../components/item";
 
 import { usePagination } from "../../hook/usePagination";
 import Search from "../components/search";
+import { useEffect } from "react";
+import { getCoures } from "@/lib/shareCouresSlice";
+import { useDispatch, useSelector } from "react-redux";
 function ShareCourse() {
-  const {
-    datas,
-    totalPages,
-    currentPage,
-    totalItems,
-    handleClickPage,
-    handleNextPage,
-    handlePrevPage,
-  } = usePagination({initialUrl:"/courses"});
+  const datas = useSelector((state) => state.courses.lists);
+  const totalItems = useSelector((state) => state.courses.totalCount);
+  const totalPages = useSelector((state) => state.courses.totalPages);
 
+  const dispatch = useDispatch();
+
+  const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
+    usePagination(totalPages);
+
+  useEffect(() => {
+    dispatch(getCoures({ page: currentPage }));
+  }, [currentPage, dispatch]);
   return (
     <div>
-       <Search type={2}/>
+      <Search type={2} />
       <h4>ShareCourse: Có :{totalItems} khóa học </h4>
       <div className="products">
         <div className="body">
-          {datas.map((item,index) => {
+          {datas.map((item, index) => {
             return <ItemMain key={index} item={item} collum />;
           })}
         </div>

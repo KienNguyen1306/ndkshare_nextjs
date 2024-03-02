@@ -1,8 +1,10 @@
 import connection from "@/db/db";
 import jwt from "jsonwebtoken";
 
+import { getCsrfToken,getSession } from "next-auth/react";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { headers, cookies } from "next/headers";
+import { options } from "../auth/[...nextauth]/route";
 
 export async function GET(request) {
   const headersList = headers();
@@ -34,6 +36,7 @@ export async function GET(request) {
     return NextResponse.json({ error: "Internal Server Error" });
   }
 }
+
 
 export async function POST(request) {
   try {

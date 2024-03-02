@@ -35,9 +35,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
-
-
  <div className="flex flex-col gap-5 m-3">
       {/* Comment Container */}
       <div>
@@ -100,29 +97,20 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
       </div>
     </div>
 
-
-
-
-
-
-
-
- class="z-10 flex items-center justify-center px-3 h-8 leading-tight  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-
-
+class="z-10 flex items-center justify-center px-3 h-8 leading-tight hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
 
 # HOST= "sql.freedb.tech"
-# USER= "freedb_bosschua"
-# DATABASE="freedb_ndkshare"
-# PASSWORD = "qkgBV52ZtnDz!UM"
 
+# USER= "freedb_bosschua"
+
+# DATABASE="freedb_ndkshare"
+
+# PASSWORD = "qkgBV52ZtnDz!UM"
 
 # PASSWORD = ""
 
-
-
-   // Lấy thông tin người dùng từ token (ví dụ: username)
-    // const { username } = decodedToken;
+// Lấy thông tin người dùng từ token (ví dụ: username)
+// const { username } = decodedToken;
 
     // // Truy vấn cơ sở dữ liệu để lấy thông tin người dùng
     // const [rows, fields] = await connection.execute(
@@ -137,3 +125,81 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     //     status: 404,
     //   });
     // }
+
+
+
+
+
+
+        // const res = await fetch("http://localhost:3000/api/login", {
+        //   method: "POST",
+        //   body: JSON.stringify(credentials),
+        //   headers: { "Content-Type": "application/json" },
+        // });
+        // const data = await res.json();
+
+        // if (data.assetToken) {
+        //   return data;
+        // }
+        // return null;
+
+
+
+
+
+
+export async function GET(request) {
+  const headersList = headers();
+  const authorizationHeader = headersList.get("authorization");
+
+  const cookieStore = cookies();
+  const token = cookieStore.get("token");
+  try {
+    //   if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+    //     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    //   }
+    //   const token = authorizationHeader.split("Bearer ")[1];
+
+    if (!token) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const decodedToken = jwt.verify(token.value, `${process.env.SECRET_KEY}`);
+    const { username } = decodedToken;
+    const [rows] = await connection.execute(
+      `SELECT * FROM users WHERE username = "${username}"`
+    );
+    if (rows.length > 0) {
+      return NextResponse.json(rows[0], { status: 200 });
+    } else {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+  } catch (error) {
+    console.error("Error getting user by token:", error);
+    return NextResponse.json({ error: "Internal Server Error" });
+  }
+}
+
+
+===============================================
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username");
+    const password = formData.get("password");
+    setLoading(true);
+    loginUser({ username: username, password }).then((data) => {
+      if (data.message) {
+        setError(true);
+        setLoading(false);
+      } else {
+        setError(false);
+        getUser(setUser);
+        setLoading(false);
+      }
+    });
+  }
+
+  useEffect(() => {
+    getUser(setUser);
+  }, []);
+  =============================================

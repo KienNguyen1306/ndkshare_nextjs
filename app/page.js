@@ -1,23 +1,28 @@
 "use client";
 
+import { useDispatch, useSelector } from "react-redux";
 import { usePagination } from "../hook/usePagination";
 import ListProducts from "./components/ListProducts";
 import Pagination from "./components/Pagination";
 import Search from "./components/search";
+import { useEffect } from "react";
+import { getGameMod } from "@/lib/modgameSlice";
 export default function Home() {
-  const {
-    datas,
-    totalPages,
-    currentPage,
-    totalItems,
-    handleClickPage,
-    handleNextPage,
-    handlePrevPage,
-  } = usePagination( {initialUrl:"/modgames"});
+  const datas = useSelector((state) => state.modgame.lists);
+  const totalPages = useSelector((state) => state.modgame.totalPages);
+  const totalItems = useSelector((state) => state.modgame.totalCount);
+
+  const dispatch = useDispatch();
+  const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
+    usePagination(totalPages);
+
+  useEffect(() => {
+    dispatch(getGameMod({ page: currentPage }));
+  }, [currentPage, dispatch]);
 
   return (
     <div>
-       <Search type={1}/>
+      <Search type={1} />
       <h5>GAME MOD BY NDK : Có : {totalItems} game</h5>
       <ListProducts datas={datas} />
       {totalPages > 1 && (
