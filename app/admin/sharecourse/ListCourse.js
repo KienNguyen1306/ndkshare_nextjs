@@ -76,7 +76,7 @@ function ListCourse({}) {
                     <p className="line-clamp-2">{item?.sub}</p>
                   </td>
                   <td className="px-6 py-2">
-                    {dayjs(item?.time).format("YYYY-MM-DD")}
+                    {dayjs(item?.create_date).format("YYYY-MM-DD")}
                   </td>
                   <td className="px-6 py-2 text-right">
                     <Link
