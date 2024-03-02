@@ -60,7 +60,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
     },
   },
   pages: {
-    signIn: "/admin",
+    signIn: "/login",
   },
 };
 
