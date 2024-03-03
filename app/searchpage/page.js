@@ -5,9 +5,10 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usePagination } from "../../hook/usePagination";
-import Pagination from "../components/Pagination";
-import ItemMain from "../components/item";
-import Search from "../components/search";
+import Search from "@/components/search";
+import ItemMain from "@/components/item";
+import Pagination from "@/components/Pagination";
+
 
 function SearchPage() {
   const dispatch = useDispatch();

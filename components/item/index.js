@@ -1,7 +1,7 @@
 "use client";
 import "./item.css";
 import { useRouter } from "next/navigation";
-function itemMain({ collum, item }) {
+function ItemMain({ collum, item }) {
   const router = useRouter();
 
   const handleClick = () => {
@@ -34,4 +34,4 @@ function itemMain({ collum, item }) {
   );
 }
 
-export default itemMain;
+export default ItemMain;

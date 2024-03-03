@@ -1,4 +1,4 @@
-import PutCourse from "./PutCourse";
+import PutCourse from "../../../../components/AminComponets/courses/PutCourse";
 
 function PageDetail() {
     return (

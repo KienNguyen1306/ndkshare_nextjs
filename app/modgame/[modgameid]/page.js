@@ -1,11 +1,11 @@
 "use client" 
-import Comment from "@/app/components/comment";
-import Search from "@/app/components/search";
 import { getDetailGame } from "@/lib/modgameSlice";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./modgame.css";
+import Search from "@/components/search";
+import Comment from "@/components/comment";
 
 function ModGameDetail() {
   const params = useParams()

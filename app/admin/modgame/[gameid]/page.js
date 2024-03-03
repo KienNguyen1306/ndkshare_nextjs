@@ -1,4 +1,5 @@
-import PutGame from "../PutGame";
+import PutGame from "@/components/AminComponets/game/PutGame";
+
 
 function PageDetailGame() {
     return ( 

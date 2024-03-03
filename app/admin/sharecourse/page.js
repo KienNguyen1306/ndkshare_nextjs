@@ -1,6 +1,8 @@
 "use client";
-import ListCourse from "./[courseid]/ListCourse";
-import PostCourse from "./[courseid]/PostCourse";
+
+import ListCourse from "@/components/AminComponets/courses/ListCourse";
+import PostCourse from "@/components/AminComponets/courses/PostCourse";
+
 
 function AdminShareCoures() {
 

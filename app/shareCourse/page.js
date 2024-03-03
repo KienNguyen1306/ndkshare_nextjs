@@ -1,12 +1,11 @@
 "use client";
-import Pagination from "../components/Pagination";
-import ItemMain from "../components/item";
-
 import { usePagination } from "../../hook/usePagination";
-import Search from "../components/search";
 import { useEffect } from "react";
 import { getCoures } from "@/lib/shareCouresSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Search from "@/components/search";
+import Pagination from "@/components/Pagination";
+import ItemMain from "@/components/item";
 function ShareCourse() {
   const datas = useSelector((state) => state.courses.lists);
   const totalItems = useSelector((state) => state.courses.totalCount);

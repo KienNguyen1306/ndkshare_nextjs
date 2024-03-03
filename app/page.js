@@ -2,11 +2,12 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { usePagination } from "../hook/usePagination";
-import ListProducts from "./components/ListProducts";
-import Pagination from "./components/Pagination";
-import Search from "./components/search";
+
 import { useEffect } from "react";
 import { getGameMod } from "@/lib/modgameSlice";
+import ListProducts from "@/components/ListProducts";
+import Pagination from "@/components/Pagination";
+import Search from "@/components/search";
 export default function Home() {
   const datas = useSelector((state) => state.modgame.lists);
   const totalPages = useSelector((state) => state.modgame.totalPages);

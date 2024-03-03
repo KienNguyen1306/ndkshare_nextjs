@@ -1,31 +1,30 @@
 "use client";
+import Pagination from "@/components/Pagination";
 import { usePagination } from "@/hook/usePagination";
-import { deleteGame } from "@/lib/modgameSlice";
-import { deleteCoures, getCoures } from "@/lib/shareCouresSlice";
+import { deleteGame, getGameMod } from "@/lib/modgameSlice";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Pagination from "../../../components/Pagination";
-function ListCourse({}) {
-  const datas = useSelector((state) => state.courses.lists);
-  const totalPages = useSelector((state) => state.courses.totalPages);
+function ListGame({}) {
+  const datas = useSelector((state) => state.modgame.lists);
+  const totalPages = useSelector((state) => state.modgame.totalPages);
 
   const dispatch = useDispatch();
   const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
     usePagination(totalPages);
 
-  function handleDeleteCoures(id) {
-    dispatch(deleteCoures(id))
+  function deleteModGame(id) {
+    dispatch(deleteGame(id))
   }
 
   useEffect(() => {
-    dispatch(getCoures({ page: currentPage }));
+    dispatch(getGameMod({ page: currentPage }));
   }, [currentPage, dispatch]);
   return (
     <>
       <h1 className="mb-4 text-1xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Danh sách khóa học
+        List Game Mod
       </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -41,7 +40,10 @@ function ListCourse({}) {
                 Taitle
               </th>
               <th scope="col" className="px-6 py-3">
-                {" Time"}
+                {" Time     "}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Version
               </th>
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Edit</span>
@@ -78,16 +80,17 @@ function ListCourse({}) {
                   <td className="px-6 py-2">
                     {dayjs(item?.create_date).format("YYYY-MM-DD")}
                   </td>
+                  <td className="px-6 py-2">{item?.version}</td>
                   <td className="px-6 py-2 text-right">
                     <Link
-                      href={`/admin/sharecourse/${item?.id}`}
+                      href={`/admin/modgame/${item?.id}`}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Edit
                     </Link>
                     <a
                       href="#"
-                      onClick={() => handleDeleteCoures(item?.id)}
+                      onClick={() => deleteModGame(item?.id)}
                       className="ml-5 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Delete
@@ -112,4 +115,4 @@ function ListCourse({}) {
   );
 }
 
-export default ListCourse;
+export default ListGame;

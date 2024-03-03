@@ -1,8 +1,8 @@
 "use client";
+import ListGame from "@/components/AminComponets/game/ListGame";
+import PostGame from "@/components/AminComponets/game/PostGame";
 import { postModGame } from "@/fechApi";
 import { useState } from "react";
-import ListGame from "./modgame/ListGame";
-import PostGame from "./modgame/PostGame";
 
 function AdminPage() {
   const [loading, setLoading] = useState(false);

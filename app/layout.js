@@ -1,7 +1,8 @@
+import LayoutDetail from "@/components/LayoutDetail";
 import ProviderNext from "./Provider";
-import LayoutDetail from "./components/LayoutDetail";
+
 import "./globals.css";
-import Favicon from "/public/favicon.ico";
+
 
 export const metadata = {
   title: "Game mod, game androi miễn phí, chia sẽ khóa khọc free",
