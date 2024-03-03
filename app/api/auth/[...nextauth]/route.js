@@ -2,7 +2,7 @@ import connection from "@/db/db";
 import jwt from "jsonwebtoken";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
- const optionsNextauth = {
+const optionsNextauth = {
   secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
@@ -13,57 +13,71 @@ import CredentialsProvider from "next-auth/providers/credentials";
       },
       authorize: async (credentials) => {
         try {
-          const { username, password } = credentials
-          const [rows] = await connection.execute(`SELECT * FROM users WHERE username = "${username}" AND password = "${password}"`);
+          const { username, password } = credentials;
+          const [rows] = await connection.execute(
+            `SELECT * FROM users WHERE username = "${username}" AND password = "${password}"`
+          );
           if (rows.length > 0) {
-            const assetToken = jwt.sign({ username }, `${process.env.SECRET_KEY}`, {expiresIn: "1h",});
-            const resetToken = jwt.sign({ username }, `${process.env.SECRET_KEY}`, {expiresIn: "1d",});
-            return { assetToken, resetToken ,rows}
+            const assetToken = jwt.sign(
+              { username },
+              `${process.env.SECRET_KEY}`,
+              { expiresIn: "1h" }
+            );
+            const resetToken = jwt.sign(
+              { username },
+              `${process.env.SECRET_KEY}`,
+              { expiresIn: "1d" }
+            );
+            return { assetToken, resetToken, rows };
           } else {
-            return null
-            
+            return null;
           }
         } catch (error) {
-          return error
+          return error;
         }
       },
     }),
   ],
   callbacks: {
-    async signIn({ user}) {
-      return user
+    async signIn({ user }) {
+      if (user) {
+        return user;
+      }
     },
     async jwt({ token, user }) {
-      if(user){
-        token.username = user.rows[0].username
-        token.fullname = user.rows[0].fullname
-        token.image = user.rows[0].image
-        token.role = user.rows[0].role
-        token.email =user.rows[0].email
-        token.assetToken =user.assetToken
-        token.resetToken =user.resetToken
+      if (user) {
+        token.username = user.rows[0].username;
+        token.fullname = user.rows[0].fullname;
+        token.image = user.rows[0].image;
+        token.role = user.rows[0].role;
+        token.email = user.rows[0].email;
+        token.assetToken = user.assetToken;
+        token.resetToken = user.resetToken;
       }
-      return token
+      return token;
     },
     async session({ session, token }) {
       return {
         ...session,
-        user:{
+        user: {
           ...session.user,
-          name:token.username,
-          email:token.email,
-          image:token.image,
-          fullname:token.fullname,
-          role:token.role,
-        }
-      }
+          name: token.username,
+          email: token.email,
+          image: token.image,
+          fullname: token.fullname,
+          role: token.role,
+        },
+      };
     },
   },
   pages: {
     signIn: "/login",
   },
+  session: {
+    jwt: true,
+    maxAge: 10 * 60, 
+  },
 };
 
 const handler = NextAuth(optionsNextauth);
 export { handler as GET, handler as POST, optionsNextauth };
-

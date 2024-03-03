@@ -1,16 +1,13 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IconLoading } from "../../Icon";
 // eslint-disable-next-line @next/next/no-async-client-component
 function Admin() {
-  const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const { data: session } = useSession();
   async function handleSignIn(e) {
     e.preventDefault();
     setLoading(true);
@@ -19,18 +16,21 @@ function Admin() {
       const username = formData.get("username");
       const password = formData.get("password");
       let credentials = { username, password };
-      const result = await signIn("credentials", {
+      const result =await signIn('credentials', {
         ...credentials,
         redirect: false,
-      }).then(() => {
-        if (session?.user?.role === 'admin') {
-          router.push("/admin");
-        } else {
-          router.push("/");
-        }
-      });
-      if (result?.ok) {
+      })
+      if (result.ok) {
+        const session = await getSession()
         setLoading(false);
+        if (session && session.user) {
+          const userRole = session.user.role;
+          if (userRole === 'admin') {
+            router.push('/admin');
+          } else {
+            router.push('/');
+          }
+        }
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu đăng nhập:", error);
@@ -41,8 +41,6 @@ function Admin() {
 
   return (
     <div>
-      {user !== null && <p>{user?.username}</p>}
-
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-7">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img

@@ -8,14 +8,18 @@ function AdminLayout({ children }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (status === "authenticated") {
-    if (!session) {
-      router.push("/login");
-    } else if (session.user.role !== "admin") {
-      router.push("/");
-    } else {
-      router.push("/admin");
+  if (session) {
+    if (status === "authenticated") {
+      if (!session) {
+        router.push("/login");
+      } else if (session.user.role !== "admin") {
+        router.push("/");
+      } else {
+        router.push("/admin");
+      }
     }
+  }else{
+    router.push("/login");
   }
   return (
     <html lang="en">
