@@ -5,6 +5,7 @@ import { getDetailCourses } from "@/lib/shareCouresSlice";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ListLession from "./ListLession";
 
 function PutCourse() {
   const [detail, setDetail] = useState();
@@ -34,16 +35,17 @@ function PutCourse() {
   };
 
   useEffect(() => {
-    dispatch(getDetailCourses({id:courseid,page:1})).then((res)=>{
-      console.log('rédsdfsd',res)
+    dispatch(getDetailCourses({id:courseid,page:1,limit:5})).then((res)=>{
       setDetail(res.payload.dataCoures[0])
     });
   }, [dispatch, courseid]);
 
   return (
+    <div>
+      <ListLession/>
     <div className="my-20">
       <h1 className="mb-4 text-1xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Post Game Mod
+        Cập nhập khóa học
       </h1>
       <form className=" w-full shadow-2xl p-10" onSubmit={handlePostGame}>
         <div className="mb-5">
@@ -109,10 +111,11 @@ function PutCourse() {
               <IconLoading />
             </div>
           ) : (
-            "Thêm game"
+            "Cập nhập"
           )}
         </button>
       </form>
+    </div>
     </div>
   );
 }

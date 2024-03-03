@@ -22,7 +22,7 @@ export async function GET(request) {
     );
 
     return NextResponse.json(
-      { data: results, totalPages, totalCount },
+      { data: results, totalPages, totalCount ,perPage},
       { status: 200 }
     );
   } catch (err) {

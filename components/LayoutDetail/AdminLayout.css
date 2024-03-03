@@ -1,6 +1,6 @@
 .admin{
     display: flex;
-   
+   gap: 20px;
 }
 
 .main-body{

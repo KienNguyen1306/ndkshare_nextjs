@@ -7,7 +7,7 @@ export async function GET(request, params) {
     let id = params.params.coursesID;
 
     let page = parseInt(searchParams.get("page")) || 1;
-    let perPage = 1;
+    let perPage = parseInt(searchParams.get("limit")) || 1;
     let offset = (page - 1) * perPage;
     const [dataCoures] = await connection.execute(
       `SELECT * FROM courses WHERE id= ${id}`
@@ -25,7 +25,7 @@ export async function GET(request, params) {
       `SELECT name  FROM lessonscourses WHERE id_counrse  = ${id}`
     );
     return NextResponse.json(
-      {dataCoures:dataCoures, data: results, totalPages, totalCount, resultsNameLessons },
+      {dataCoures:dataCoures, data: results, totalPages, totalCount, resultsNameLessons,perPage },
       { status: 200 }
     );
   } catch (err) {

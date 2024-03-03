@@ -23,7 +23,7 @@ export async function GET(request) {
 
     // Trả về kết quả bao gồm cả tổng số trang và số mục trên mỗi trang
     return NextResponse.json(
-      { data: results, totalPages, totalCount },
+      { data: results, totalPages, totalCount,perPage },
       { status: 200 }
     );
   } catch (err) {
