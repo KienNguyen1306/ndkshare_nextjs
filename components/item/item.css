@@ -4,6 +4,11 @@
   border-radius: 10px;
   margin: 10px 0;
   cursor: pointer;
+  background-color: #ffff;
+}
+
+.item:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .item.row {
   display: flex;
@@ -35,8 +40,9 @@
   }
 .name {
   margin-bottom: 10px;
+  font-weight: bold;
 }
 .sub {
   font-size: 14px;
-  margin: 10px 0;
+  margin-bottom: 10px;
 }

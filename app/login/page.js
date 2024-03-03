@@ -3,7 +3,7 @@ import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IconLoading } from "../../components/Icon";
-// eslint-disable-next-line @next/next/no-async-client-component
+import './login.css'
 function Admin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ function Admin() {
   }
 
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-7">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -66,11 +66,11 @@ function Admin() {
             </div>
           )}
 
-          <form className="space-y-6" onSubmit={handleSignIn}>
+          <form className="mt-10 form_login space-y-6 border rounded-md border-solid border-black p-10" onSubmit={handleSignIn}>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="text-white block text-sm font-medium leading-6 text-gray-900"
               >
                 Tên đăng nhập
               </label>
@@ -89,14 +89,14 @@ function Admin() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="text-white block text-sm font-medium leading-6 text-gray-900"
                 >
                   Password
                 </label>
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-indigo-400 hover:text-indigo-500"
                   >
                     Forgot password?
                   </a>

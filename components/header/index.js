@@ -18,7 +18,7 @@ function Header() {
       <div className="body">
         <div className="logo">
           <Link href="/">
-            <img src="./image/ndk.png" alt="logo" />
+            <img src="/image/ndk.png" alt="logo" />
           </Link>
         </div>
         <nav className={`header_nav ${show ? "" : "show"}`}>
@@ -33,7 +33,7 @@ function Header() {
             <Link
               href="/login"
               type="button"
-              className="text-violet-700 admin mobie"
+              className="text-white admin mobie"
             >
               Đăng nhập
             </Link>
@@ -47,7 +47,7 @@ function Header() {
               <Link href="/shareCourse">ShareCourse</Link>
             </li>
             <li>
-              <Link href="contact">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </nav>
@@ -68,7 +68,7 @@ function Header() {
             </div>
           </div>
         ) : (
-          <Link href="/login" type="button" className="text-violet-700">
+          <Link href="/login" type="button" className="text-white">
             Đăng nhập
           </Link>
         )}

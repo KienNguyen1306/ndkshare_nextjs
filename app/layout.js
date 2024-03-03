@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <ProviderNext>
       <LayoutDetail>
-        <div className="main-body">{children}</div>
+        {children}
       </LayoutDetail>
     </ProviderNext>
   );
