@@ -1,9 +1,9 @@
-import PutCourse from "../PutCourse";
+import PutCourse from "./PutCourse";
 
-function Page() {
+function PageDetail() {
     return (
         <PutCourse/>
      );
 }
 
-export default Page;
+export default PageDetail;

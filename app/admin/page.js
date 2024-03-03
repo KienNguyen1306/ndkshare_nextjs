@@ -4,7 +4,7 @@ import { useState } from "react";
 import ListGame from "./modgame/ListGame";
 import PostGame from "./modgame/PostGame";
 
-function Admin() {
+function AdminPage() {
   const [loading, setLoading] = useState(false);
 
   async function handlePostGame(e) {
@@ -33,4 +33,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default AdminPage;

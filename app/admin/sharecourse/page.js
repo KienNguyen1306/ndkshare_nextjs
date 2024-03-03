@@ -1,8 +1,8 @@
 "use client";
-import ListCourse from "./ListCourse";
-import PostCourse from "./PostCourse";
+import ListCourse from "./[courseid]/ListCourse";
+import PostCourse from "./[courseid]/PostCourse";
 
-function Admin() {
+function AdminShareCoures() {
 
   return (
     <>
@@ -12,4 +12,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default AdminShareCoures;

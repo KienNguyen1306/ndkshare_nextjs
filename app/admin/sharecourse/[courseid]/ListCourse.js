@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../../components/Pagination";
 function ListCourse({}) {
   const datas = useSelector((state) => state.courses.lists);
   const totalPages = useSelector((state) => state.courses.totalPages);

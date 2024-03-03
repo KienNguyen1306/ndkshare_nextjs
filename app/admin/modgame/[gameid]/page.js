@@ -1,9 +1,9 @@
 import PutGame from "../PutGame";
 
-function Page() {
+function PageDetailGame() {
     return ( 
         <PutGame/>
      );
 }
 
-export default Page;
+export default PageDetailGame;

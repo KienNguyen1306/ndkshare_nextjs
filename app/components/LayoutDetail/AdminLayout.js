@@ -11,12 +11,10 @@ function AdminLayout({ children }) {
   if (session) {
     if (status === "authenticated") {
       if (!session) {
-        router.push("/login");
+        router.push("/");
       } else if (session.user.role !== "admin") {
         router.push("/");
-      } else {
-        router.push("/admin");
-      }
+      } 
     }
   }else{
     router.push("/login");
