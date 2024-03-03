@@ -1,4 +1,4 @@
-import { IconFacebook, IconGithub, IconGoogle, IconItasgram, IconLinkin, IconTaiweat } from "@/Icon";
+import { IconFacebook, IconGithub, IconGoogle, IconItasgram, IconLinkin, IconTaiweat } from "@/components/Icon";
 
 function Footer() {
   return (

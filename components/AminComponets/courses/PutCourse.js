@@ -1,5 +1,5 @@
 "use client";
-import { IconLoading } from "@/Icon";
+import { IconLoading } from "@/components/Icon";
 import { putCoures } from "@/fechApi";
 import { getDetailCourses } from "@/lib/shareCouresSlice";
 import { useParams, useRouter } from "next/navigation";

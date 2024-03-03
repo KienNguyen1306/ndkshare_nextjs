@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { IconLoading } from "../../../Icon";
+import { IconLoading } from "../../Icon";
 import { postGame } from "@/lib/modgameSlice";
 import { useState } from "react";
 function PostGame() {

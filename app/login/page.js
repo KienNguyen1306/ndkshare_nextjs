@@ -1,8 +1,8 @@
 "use client";
-import { getSession, signIn, useSession } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { IconLoading } from "../../Icon";
+import { IconLoading } from "../../components/Icon";
 // eslint-disable-next-line @next/next/no-async-client-component
 function Admin() {
   const [error, setError] = useState(false);
@@ -16,28 +16,30 @@ function Admin() {
       const username = formData.get("username");
       const password = formData.get("password");
       let credentials = { username, password };
-      const result =await signIn('credentials', {
+      const result = await signIn("credentials", {
         ...credentials,
         redirect: false,
-      })
+      });
       if (result.ok) {
-        const session = await getSession()
+        const session = await getSession();
         setLoading(false);
         if (session && session.user) {
           const userRole = session.user.role;
-          if (userRole === 'admin') {
-            router.push('/admin');
+          if (userRole === "admin") {
+            router.push("/admin");
           } else {
-            router.push('/');
+            router.push("/");
           }
         }
+      } else {
+        setLoading(false);
+        setError(true);
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu đăng nhập:", error);
       setLoading(false);
     }
   }
-
 
   return (
     <div>
@@ -126,15 +128,6 @@ function Admin() {
               </button>
             </div>
           </form>
-          {/* <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?
-          <a
-            href="#"
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >
-            Start a 14 day free trial
-          </a>
-        </p> */}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import { callAPI, putModGame } from "@/fechApi";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IconLoading } from "../../../Icon";
+import { IconLoading } from "../../Icon";
 function PutGame() {
   const [detail, setDetail] = useState();
   const [loading, setLoading] = useState(false);

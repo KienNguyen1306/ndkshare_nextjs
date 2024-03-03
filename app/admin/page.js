@@ -24,7 +24,6 @@ function AdminPage() {
       }
     });
   }
-
   return (
     <>
       <ListGame />

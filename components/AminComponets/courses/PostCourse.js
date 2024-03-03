@@ -1,6 +1,6 @@
 "use client";
 
-import { IconLoading } from "@/Icon";
+import { IconLoading } from "@/components/Icon";
 import { postCoures } from "@/lib/shareCouresSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

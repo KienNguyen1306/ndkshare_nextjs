@@ -1,4 +1,4 @@
-import BASE_URL_API from "../constans/baseUrl";
+import BASE_URL_API from "../lib/constans/baseUrl";
 const callAPI = async (
   url,
   setDatas,

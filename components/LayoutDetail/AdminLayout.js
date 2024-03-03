@@ -1,28 +1,29 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import "./AdminLayout.css";
+import { getSession, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import "./AdminLayout.css";
 
 function AdminLayout({ children }) {
+  const [pending, setPending] = useState(true);
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (session) {
-    if (status === "authenticated") {
-      if (!session) {
-        router.push("/");
-      } else if (session.user.role !== "admin") {
-        router.push("/");
-      } 
+  const fetchData = async () => {
+    const session = await getSession();
+    if (session?.user?.role !== "admin") {
+      router.push("/");
+    } else {
+      setPending(false);
     }
-  }else{
-    router.push("/login");
-  }
+  };
+  fetchData();
+
   return (
     <html lang="en">
       <body>
-        {session?.user?.role === "admin" && (
+        {!pending && (
           <div className="flex admin">
             <div
               className="group/sidebar flex flex-col shrink-0 lg:w-[300px] w-[250px] transition-all duration-300 ease-in-out m-0 z-40 inset-y-0 left-0 bg-white border-r border-r-dashed border-r-neutral-200 sidenav fixed-start loopple-fixed-start"
