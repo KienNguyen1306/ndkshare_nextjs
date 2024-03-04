@@ -4,8 +4,7 @@ import { putCoures } from "@/fechApi";
 import { getDetailCourses } from "@/lib/shareCouresSlice";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ListLession from "./ListLession";
+import { useDispatch } from "react-redux";
 
 function PutCourse() {
   const [detail, setDetail] = useState();
@@ -35,14 +34,14 @@ function PutCourse() {
   };
 
   useEffect(() => {
-    dispatch(getDetailCourses({id:courseid,page:1,limit:5})).then((res)=>{
+    dispatch(getDetailCourses({id:courseid,page:1,limit:2})).then((res)=>{
       setDetail(res.payload.dataCoures[0])
     });
   }, [dispatch, courseid]);
 
   return (
     <div>
-      <ListLession/>
+      
     <div className="my-20">
       <h1 className="mb-4 text-1xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
         Cập nhập khóa học
