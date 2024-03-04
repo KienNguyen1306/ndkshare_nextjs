@@ -73,10 +73,10 @@ const optionsNextauth = {
   pages: {
     signIn: "/login",
   },
-  session: {
-    jwt: true,
-    maxAge: 10 * 60, 
-  },
+  // session: {
+  //   jwt: true,
+  //   maxAge: 10 * 60, 
+  // },
 };
 
 const handler = NextAuth(optionsNextauth);

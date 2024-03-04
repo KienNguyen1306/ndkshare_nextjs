@@ -1,14 +1,12 @@
 import connection from "@/db/db";
 import jwt from "jsonwebtoken";
 
-import { getCsrfToken,getSession } from "next-auth/react";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { options } from "../auth/[...nextauth]/route";
 
 export async function GET(request) {
-  const headersList = headers();
-  const authorizationHeader = headersList.get("authorization");
+  // const headersList = headers();
+  // const authorizationHeader = headersList.get("authorization");
 
   const cookieStore = cookies();
   const token = cookieStore.get("token");

@@ -10,15 +10,19 @@ function AdminLayout({ children }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  const fetchData = async () => {
-    const session = await getSession();
-    if (session?.user?.role !== "admin") {
-      router.push("/");
-    } else {
-      setPending(false);
-    }
-  };
-  fetchData();
+  
+  useEffect(()=>{
+    const fetchData = async () => {
+      const session = await getSession();
+      if (session?.user?.role !== "admin") {
+        router.push("/");
+      } else {
+        setPending(false);
+      }
+    };
+    fetchData();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <html lang="en">
