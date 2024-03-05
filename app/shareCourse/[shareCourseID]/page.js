@@ -1,6 +1,5 @@
 "use client";
 
-import Pagination from "@/components/Pagination";
 import Search from "@/components/search";
 import VideoItem from "@/components/videosItem";
 import { usePagination } from "@/hook/usePagination";
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 function CoureseDetail() {
+  
   const params = useParams();
   const datas = useSelector((state) => state.courses.lessons.list);
   const totalPages = useSelector((state) => state.courses.lessons.totalPages);
@@ -24,8 +24,6 @@ function CoureseDetail() {
   const {
     currentPage,
     handleClickPage,
-    handleNextPage,
-    handlePrevPage,
   } = usePagination(totalPages);
 
 
@@ -44,21 +42,14 @@ function CoureseDetail() {
             </div>
           );
         })}
-        {totalPages > 1 && (
-          <Pagination
-            totalPages={totalPages}
-            handleClickpage={handleClickPage}
-            currentPage={currentPage}
-            handleNextPage={handleNextPage}
-            handlePrevPage={handlePrevPage}
-          />
-        )}
       </div>
       <h2 className="title_h2">Danh sách các bài học :</h2>
       <ul className="list_lessons">
         {nameLessons.map((item, index) => {
           return (
             <li key={index}
+
+            className={currentPage === index +1  && 'color-bl'}
               onClick={() => {
                 handleClickPage(index + 1);
               }}

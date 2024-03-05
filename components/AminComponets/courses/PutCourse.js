@@ -34,7 +34,7 @@ function PutCourse() {
   };
 
   useEffect(() => {
-    dispatch(getDetailCourses({id:courseid,page:1,limit:2})).then((res)=>{
+    dispatch(getDetailCourses({id:courseid,page:1,limit:10})).then((res)=>{
       setDetail(res.payload.dataCoures[0])
     });
   }, [dispatch, courseid]);

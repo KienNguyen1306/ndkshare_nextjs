@@ -48,10 +48,14 @@ html {
 }
 
 .list_lessons {
-  list-style: auto;
+  list-style: circle;
   font-size: 14px;
   padding: 8px 20px;
   cursor: pointer;
+}
+
+.color-bl{
+  color: #4080ff;
 }
 
 .list_lessons li:hover {

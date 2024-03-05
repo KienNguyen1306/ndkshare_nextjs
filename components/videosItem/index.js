@@ -7,8 +7,8 @@ function VideoItem({ item }) {
       <div className="video">
         <iframe
         className="iframe_video"
-          width="560"
-          height="315"
+          width="640"
+          height="360"
           src={item?.linkvideo}
           title="YouTube video player"
           frameBorder="0"

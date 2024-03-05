@@ -28,7 +28,7 @@ function ListLession({}) {
     setFormLess(!formLes)
   }
   useEffect(() => {
-    dispatch(getDetailCourses({id:courseid,page:currentPage,limit:2}))
+    dispatch(getDetailCourses({id:courseid,page:currentPage,limit:10}))
   }, [courseid, currentPage, dispatch]);
 
 
