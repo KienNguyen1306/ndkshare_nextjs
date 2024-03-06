@@ -8,11 +8,14 @@ import { getGameMod } from "@/lib/modgameSlice";
 import ListProducts from "@/components/ListProducts";
 import Pagination from "@/components/Pagination";
 import Search from "@/components/search";
+import LoadingFetch from "@/components/Loadingfetch";
 export default function Home() {
-  const datas = useSelector((state) => state.modgame.lists);
-  const totalPages = useSelector((state) => state.modgame.totalPages);
-  const totalItems = useSelector((state) => state.modgame.totalCount);
-
+  const {
+    lists: datas,
+    totalPages,
+    totalCount: totalItems,
+    loading,
+  } = useSelector((state) => state.modgame);
   const dispatch = useDispatch();
   const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
     usePagination(totalPages);
@@ -25,6 +28,7 @@ export default function Home() {
     <div>
       <Search type={1} />
       <h5>GAME MOD BY NDK : Có : {totalItems} game</h5>
+      <LoadingFetch type="bars" loading={loading}/>
       <ListProducts datas={datas} />
       {totalPages > 1 && (
         <Pagination
