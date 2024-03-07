@@ -20,8 +20,6 @@ function CoureseDetail() {
   const nameLessons = useSelector((state) => state.courses.lessons.nameLessons);
   const dataCoures = useSelector((state) => state.courses.lessons.dataCoures);
 
-
-
   const dispatch = useDispatch();
   const { currentPage, handleClickPage } = usePagination(totalPages);
 
@@ -39,14 +37,9 @@ function CoureseDetail() {
         <Search type={2} />
         <h2>Có {totalItems} bài học</h2>
         <LoadingFetch type="bars" loading={loading} />
-        {error && <AlertsComponent error={error}/>}
-
+        {error && <AlertsComponent error={error} />}
         {datas.map((item, index) => {
-          return (
-            <div key={index}>
-              <VideoItem item={item} />
-            </div>
-          );
+          return <VideoItem key={index} item={item} />;
         })}
       </div>
       <h2 className="title_h2">Danh sách các bài học :</h2>
