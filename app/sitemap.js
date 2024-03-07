@@ -1,3 +1,5 @@
+
+
 export default async function sitemap() {
   const response = await fetch(
     `${process.env.NEXT_BASE_URL}/api/modgames?page=1&limit=99999999`
@@ -20,6 +22,7 @@ export default async function sitemap() {
     changeFrequency: "yearly",
     priority: 1,
   }));
+  
 
   return [
     {

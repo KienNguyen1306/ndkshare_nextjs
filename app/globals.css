@@ -66,11 +66,6 @@ html {
   padding-bottom: 8px;
 }
 
-button {
-  
-}
-
-
 .products .body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
