@@ -1,12 +1,12 @@
 "use client";
+import LoadingFetch from "@/components/Loadingfetch";
+import Comment from "@/components/comment";
+import Search from "@/components/search";
 import { getDetailGame } from "@/lib/modgameSlice";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./modgame.css";
-import Search from "@/components/search";
-import Comment from "@/components/comment";
-import LoadingFetch from "@/components/Loadingfetch";
 
 function ModGameDetail() {
   const params = useParams();
@@ -17,6 +17,12 @@ function ModGameDetail() {
   useEffect(() => {
     dispatch(getDetailGame(params.modgameid));
   }, [dispatch, params.modgameid]);
+
+  useEffect(() => {
+    if (detail?.name) {
+      document.title = detail?.name;
+    }
+  }, [detail?.name]);
   return (
     <div>
       <Search type={1} />

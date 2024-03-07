@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Search from "@/components/search";
 import Pagination from "@/components/Pagination";
 import ItemMain from "@/components/item";
+import LoadingFetch from "@/components/Loadingfetch";
 function ShareCourse() {
   const datas = useSelector((state) => state.courses.lists);
   const totalItems = useSelector((state) => state.courses.totalCount);
   const totalPages = useSelector((state) => state.courses.totalPages);
+  const loading = useSelector((state) => state.courses.loading);
+
 
   const dispatch = useDispatch();
 
@@ -23,6 +26,7 @@ function ShareCourse() {
     <div>
       <Search type={2} />
       <h4>ShareCourse: Có :{totalItems} khóa học </h4>
+      <LoadingFetch type="bars" loading={loading}/>
       <div className="products">
         <div className="body">
           {datas.map((item, index) => {
