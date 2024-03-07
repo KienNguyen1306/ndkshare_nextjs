@@ -42,7 +42,7 @@ function CoureseDetail() {
           return <VideoItem key={index} item={item} />;
         })}
       </div>
-      <h2 className="title_h2">Danh sách các bài học :</h2>
+      <h2 className="title_h2 mt-10">Danh sách các bài học :</h2>
       <ul className="list_lessons">
         {nameLessons.map((item, index) => {
           return (
