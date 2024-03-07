@@ -19,7 +19,6 @@ function saveCookie({ assetToken, resetToken }) {
   // Lưu vào cookie bằng js-cookie
   Cookies.set("assetToken", assetToken, { expires: expirationDays, path: "/" });
   Cookies.set("resetToken", resetToken, { expires: expirationDays, path: "/" });
-  console.log('ok')
   } catch (error) {
     console.log(error)
   }
