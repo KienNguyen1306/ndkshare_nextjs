@@ -7,11 +7,14 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./modgame.css";
+import AlertsComponent from "@/components/AlertsComponent";
 
 function ModGameDetail() {
   const params = useParams();
   const detail = useSelector((state) => state.modgame.gameDetail);
   const loading = useSelector((state) => state.modgame.gameDetail.loading);
+  const error = useSelector((state) => state.modgame.gameDetail.error);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,8 +29,11 @@ function ModGameDetail() {
   return (
     <div>
       <Search type={1} />
-      {loading ? (
+      {loading || error ? (
+        <>
         <LoadingFetch type="balls" loading={loading} />
+        {error && <AlertsComponent error={error}/>}
+        </>
       ) : (
         <div className="modgamedetai">
           <div className="body">

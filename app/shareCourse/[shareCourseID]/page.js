@@ -1,5 +1,6 @@
 "use client";
 
+import AlertsComponent from "@/components/AlertsComponent";
 import LoadingFetch from "@/components/Loadingfetch";
 import Search from "@/components/search";
 import VideoItem from "@/components/videosItem";
@@ -15,8 +16,10 @@ function CoureseDetail() {
   const totalPages = useSelector((state) => state.courses.lessons.totalPages);
   const totalItems = useSelector((state) => state.courses.lessons.totalCount);
   const loading = useSelector((state) => state.courses.lessons.loading);
+  const error = useSelector((state) => state.courses.lessons.error);
   const nameLessons = useSelector((state) => state.courses.lessons.nameLessons);
   const dataCoures = useSelector((state) => state.courses.lessons.dataCoures);
+
 
 
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ function CoureseDetail() {
         <Search type={2} />
         <h2>Có {totalItems} bài học</h2>
         <LoadingFetch type="bars" loading={loading} />
+        {error && <AlertsComponent error={error}/>}
 
         {datas.map((item, index) => {
           return (

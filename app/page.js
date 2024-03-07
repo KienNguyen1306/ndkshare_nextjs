@@ -9,12 +9,14 @@ import ListProducts from "@/components/ListProducts";
 import Pagination from "@/components/Pagination";
 import Search from "@/components/search";
 import LoadingFetch from "@/components/Loadingfetch";
+import AlertsComponent from "@/components/AlertsComponent";
 export default function Home() {
   const {
     lists: datas,
     totalPages,
     totalCount: totalItems,
     loading,
+    error
   } = useSelector((state) => state.modgame);
   const dispatch = useDispatch();
   const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
@@ -29,6 +31,7 @@ export default function Home() {
       <Search type={1} />
       <h5>GAME MOD BY NDK : Có : {totalItems} game</h5>
       <LoadingFetch type="bars" loading={loading}/>
+      {error && <AlertsComponent error={error}/>}
       <ListProducts datas={datas} />
       {totalPages > 1 && (
         <Pagination
