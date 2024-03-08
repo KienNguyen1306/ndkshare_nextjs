@@ -22,33 +22,16 @@ export default async function sitemap() {
     changeFrequency: "yearly",
     priority: 1,
   }));
-  
+
+  const routes = ["", "/sharecourse", "/contact","/login"].map((route) => ({
+    url: `${process.env.NEXT_BASE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 1,
+  }));
 
   return [
-    {
-      url: `${process.env.NEXT_BASE_URL}`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: `${process.env.NEXT_BASE_URL}/sharecourse`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: `${process.env.NEXT_BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: `${process.env.NEXT_BASE_URL}/login`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
+    ...routes,
     ...game,
     ...courses,
   ];
