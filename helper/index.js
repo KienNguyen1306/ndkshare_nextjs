@@ -38,9 +38,24 @@ function deleteCookie(name) {
 
 
 function mergeLists(list1, list2) {
-  return list1.map(item1 => {
+  return list1.map((item1,index) => {
+      let open = index === 0 ? true : false;
       let children = list2.filter(item2 => item2.titlecourses_id === item1.id);
-      return {...item1, children};
+      return {...item1, children,open};
   });
 }
-export { formatUrl, saveCookie, getCookie, deleteCookie,mergeLists };
+
+function updateListOpen(list, idToUpdate) {
+  return list.map(item => {
+    if (item.id === idToUpdate) {
+      return {...item, open: true};
+    } else {
+      return {...item, open: false};
+    }
+  });
+}
+
+function findObjectById(list, id) {
+  return list.find(item => item.id === id);
+}
+export { formatUrl, saveCookie, getCookie, deleteCookie,mergeLists ,updateListOpen,findObjectById};

@@ -4,7 +4,8 @@ export default async function sitemap() {
       `${process.env.NEXT_BASE_URL}/api/modgames?page=1&limit=99999999`
     );
     if (!responseGames.ok) {
-      throw new Error('Failed to fetch games data');
+      console.error('Error fetching data:', responseCourses);
+
     }
     const gamesData = await responseGames.json();
     const games = gamesData.data.map((item) => ({
@@ -18,7 +19,7 @@ export default async function sitemap() {
       `${process.env.NEXT_BASE_URL}/api/courses?page=1&limit=999999999`
     );
     if (!responseCourses.ok) {
-      throw new Error('Failed to fetch courses data');
+    console.error('Error fetching data:', responseCourses);
     }
     const coursesData = await responseCourses.json();
     const courses = coursesData.data.map((item) => ({
