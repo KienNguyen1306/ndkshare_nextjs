@@ -34,7 +34,7 @@ function CoureseDetail() {
     <div>
       <div className="video_main">
         <Search type={2} />
-        <h2 className="mb-20">{dataCoures[0]?.name}</h2>
+        <h2 className="mb-4">{dataCoures[0]?.name}</h2>
         <LoadingFetch type="bars" loading={loading} />
         {error && <AlertsComponent error={error} />}
         <VideoItem linkvideo={detailLession?.linkvideo} />
@@ -42,7 +42,7 @@ function CoureseDetail() {
       </div>
       <h2 className="title_h2 mt-10 mb-10">Danh sách các bài học :</h2>
       {/* component */}
-      <div className="bg-white mx-auto p-6">
+      <div className="bg-white mx-auto p-6 rounded-lg">
         {dataconver.map((item) => {
           return <ListLession key={item.id} item={item} />;
         })}

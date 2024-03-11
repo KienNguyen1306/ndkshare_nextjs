@@ -1,15 +1,14 @@
 "use client";
-import { useState } from "react";
-import LessionItem from "./LessionItem";
-import { useDispatch } from "react-redux";
 import { handleShowTitleLession } from "@/lib/shareCouresSlice";
+import { useDispatch } from "react-redux";
 import { IconAdd, IconMinus } from "../Icon";
+import LessionItem from "./LessionItem";
 
 function ListLession({ item }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer rounded-lg">
       <div
         className="mb-4"
         onClick={() => dispatch(handleShowTitleLession(item.id))}
@@ -18,7 +17,7 @@ function ListLession({ item }) {
           {item.name}
           {item.open ? <IconAdd /> : <IconMinus />}
         </div>
-        {item.open && <LessionItem list={item?.children} />}
+        <LessionItem open={item.open} list={item?.children} />
       </div>
     </div>
   );
