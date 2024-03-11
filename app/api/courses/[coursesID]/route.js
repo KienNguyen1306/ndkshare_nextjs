@@ -2,30 +2,21 @@ import { NextResponse } from "next/server";
 import connection from "@/db/db";
 
 export async function GET(request, params) {
-  const searchParams  = request.nextUrl.searchParams
   try {
     let id = params.params.coursesID;
-
-    let page = parseInt(searchParams.get("page")) || 1;
-    let perPage = parseInt(searchParams.get("limit")) || 1;
-    let offset = (page - 1) * perPage;
     const [dataCoures] = await connection.execute(
       `SELECT * FROM courses WHERE id= ${id}`
     );
-    const [countResult] = await connection.execute(
-      `SELECT COUNT(*) AS total FROM lessonscourses WHERE id_counrse = ${id}`
-    );
-    const totalCount = countResult[0].total;
-    const [results] = await connection.execute(
-      `SELECT * FROM lessonscourses WHERE id_counrse = ${id} LIMIT ${perPage} OFFSET ${offset}`
+    const [titleCoures] = await connection.execute(
+      `SELECT * FROM titlecourses WHERE courses_id= ${id}`
     );
 
-    const totalPages = Math.ceil(totalCount / perPage);
-    const [resultsNameLessons] = await connection.execute(
-      `SELECT name  FROM lessonscourses WHERE id_counrse  = ${id}`
+    const [dataLission] = await connection.execute(
+      `SELECT * FROM lessonscourses WHERE id_counrse = ${id}`
     );
+
     return NextResponse.json(
-      {dataCoures:dataCoures, data: results, totalPages, totalCount, resultsNameLessons,perPage },
+      { dataCoures, titleCoures, dataLission },
       { status: 200 }
     );
   } catch (err) {
@@ -36,8 +27,7 @@ export async function GET(request, params) {
   }
 }
 
-
-export async function DELETE(request,params) {
+export async function DELETE(request, params) {
   try {
     // Lấy id từ query parameter
     const id = params.params.coursesID;
@@ -66,9 +56,6 @@ export async function DELETE(request,params) {
   }
 }
 
-
-
-
 export async function PUT(request, params) {
   try {
     // Lấy id từ query parameter
@@ -79,10 +66,10 @@ export async function PUT(request, params) {
     }
 
     // Lấy dữ liệu cập nhật từ body của yêu cầu
-    const { image,name ,sub} = requestData; // Đây là giả sử dữ liệu cần cập nhật là `newData`
+    const { image, name, sub } = requestData; // Đây là giả sử dữ liệu cần cập nhật là `newData`
 
     // Kiểm tra xem có dữ liệu cần cập nhật không
-    if (!image || !name || !sub ) {
+    if (!image || !name || !sub) {
       return NextResponse.error("Missing fields", 400);
     }
 
@@ -103,7 +90,7 @@ export async function PUT(request, params) {
     }
 
     return NextResponse.json(
-      { message: "Record updated successfully",status: 200 },
+      { message: "Record updated successfully", status: 200 },
       { status: 200 }
     );
   } catch (error) {

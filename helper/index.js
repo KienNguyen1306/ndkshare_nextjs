@@ -34,4 +34,13 @@ function getCookie(name) {
 function deleteCookie(name) {
   Cookies.remove(name);
 }
-export { formatUrl, saveCookie, getCookie, deleteCookie };
+
+
+
+function mergeLists(list1, list2) {
+  return list1.map(item1 => {
+      let children = list2.filter(item2 => item2.titlecourses_id === item1.id);
+      return {...item1, children};
+  });
+}
+export { formatUrl, saveCookie, getCookie, deleteCookie,mergeLists };

@@ -6,8 +6,8 @@ function PageDetail() {
     
   return (
     <>
-      <ListLession />
-      <PutCourse />
+      {/* <ListLession />
+      <PutCourse /> */}
     </>
   );
 }

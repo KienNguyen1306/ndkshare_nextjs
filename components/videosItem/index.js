@@ -1,6 +1,6 @@
 import "./videoitem.css";
 
-function VideoItem({ item }) {
+function VideoItem({ linkvideo }) {
   return (
     // <div className="video">
     //   <iframe
@@ -19,7 +19,7 @@ function VideoItem({ item }) {
     <div className="container">
       <iframe
         className="responsive-iframe"
-        src={item?.linkvideo}
+        src={linkvideo}
         title="YouTube video player"
         frameBorder="0"
         allowFullScreen

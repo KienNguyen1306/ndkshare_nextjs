@@ -32,3 +32,15 @@ export async function DELETE(request,params) {
 }
 
 
+export async function GET(request, params) {
+  try {
+    const id = params.params.lessionID;
+    const [results] = await connection.execute(
+      `SELECT * FROM lessonscourses WHERE id = ${id}`
+    );
+    return NextResponse.json({ data: results[0] }, { status: 200 });
+  } catch (err) {
+    return NextResponse.error("Error message", 500);
+  }
+}
+
