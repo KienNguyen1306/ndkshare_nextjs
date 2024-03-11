@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 function CoureseDetail() {
   const params = useParams();
   const [currentLession, setCurrenrLession] = useState(0);
+  const [showLessionTitle, setShowLessionTitle] = useState(0);
+
   const { dataconver, dataCoures, dataLission, loading, error } = useSelector(
     (state) => state.courses.lessons
   );
@@ -28,9 +30,14 @@ function CoureseDetail() {
     }
   }, [currentLession, dataCoures]);
 
-  function handleClicklession(id) {
+  function handleClicklession(id,showLessionTitle) {
     setCurrenrLession(dataLission.findIndex((item)=>item.id === id));
+    setShowLessionTitle(showLessionTitle)
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleShowLessionTitle(index){
+    setShowLessionTitle(index)
   }
   return (
     <div>
@@ -45,11 +52,14 @@ function CoureseDetail() {
       <h2 className="title_h2 mt-10 mb-10">Danh sách các bài học :</h2>
       {/* component */}
       <div className="bg-white mx-auto p-6">
-        {dataconver.map((item) => {
+        {dataconver.map((item,index) => {
           return (
             <ListLession
               key={item.id}
               item={item}
+              index={index}
+              showLessionTitle={showLessionTitle}
+              handleShowLessionTitle={handleShowLessionTitle}
               handleClicklession={handleClicklession}
             />
           );

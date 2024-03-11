@@ -1,4 +1,4 @@
-function LessionItem({ list, handleClicklession }) {
+function LessionItem({ list, handleClicklession ,showLessionTitle}) {
   return (
     <div className="p-3">
       {list.length > 0 ? (
@@ -8,7 +8,7 @@ function LessionItem({ list, handleClicklession }) {
               <p
                 key={item.id}
                 onClick={() => {
-                  handleClicklession(item.id);
+                  handleClicklession(item.id,showLessionTitle);
                 }}
                 className="text-gray-600 mb-3 cursor-pointer"
               >
