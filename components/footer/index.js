@@ -117,7 +117,7 @@ function Footer() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <a href="tel:0382185674">+84 382185674</a>
+                <a href="tel:0382185674">............................</a>
               </p>
               <p className="flex items-center justify-center md:justify-start">
                 <svg
@@ -132,7 +132,7 @@ function Footer() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <a href="tel:0382185674">+84 382185674</a>
+                <a href="tel:0382185674">............................</a>
               </p>
             </div>
           </div>

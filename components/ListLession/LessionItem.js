@@ -23,7 +23,13 @@ function LessionItem({ list, open }) {
                   detailLession.id === item.id && "underline text-blue-600"
                 }`}
               >
-                {item.name}
+                {item.typelink ? (
+                  <a className="mb-12" href={item.linkvideo} target="__bank">
+                    {item.name}
+                  </a>
+                ) : (
+                  <>{item.name}</>
+                )}
               </p>
             );
           })}

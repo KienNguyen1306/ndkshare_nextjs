@@ -1,15 +1,15 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import "./header.css";
-import { AiOutlineMenu } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import "./header.css";
 function Header() {
   const [show, setShow] = useState(false);
   const { data: session } = useSession();
 
+  
   function handleClick() {
     setShow(!show);
   }
@@ -44,7 +44,7 @@ function Header() {
               <Link href="/">Game Mod</Link>
             </li>
             <li onClick={handleClick}>
-              <Link href="/shareCourse">ShareCourse</Link>
+              <Link href="/shareCourse">Khóa Học</Link>
             </li>
             <li>
               <Link href="/contact">Contact</Link>
@@ -52,20 +52,27 @@ function Header() {
           </ul>
         </nav>
         {session ? (
-          <div className="admin">
+          <div className="admin relative cursor-pointer">
             <div className="body">
               <img src={session?.user?.image} alt="icon" />
               <div className="admin-name">{session?.user?.fullname}</div>
+            </div>
+            <ul className="bg-slate-100 right-0 rounded absolute overflow-hidden">
               {session?.user?.role === "admin" && (
                 <Link
+                  className="cursor-pointer hover:bg-slate-300 p-2 block"
                   href="/admin"
-                  className="admin-name border px-2 py-0.5 rounded-lg"
                 >
-                  {" "}
-                  Manage{" "}
+                  Manage
                 </Link>
               )}
-            </div>
+              <li
+                className="cursor-pointer hover:bg-slate-300 p-2"
+                onClick={() => signOut()}
+              >
+                Đăng xuất
+              </li>
+            </ul>
           </div>
         ) : (
           <Link href="/login" type="button" className="text-white">

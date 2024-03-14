@@ -7,7 +7,7 @@ export async function GET(request) {
 
 
     const page = parseInt(searchParams.get('page')) || 1;
-    const perPage = 3; // Số mục trên mỗi trang
+    const perPage = 10; // Số mục trên mỗi trang
     const offset = (page - 1) * perPage;
     const searchName = searchParams.get('k'); // Lấy tên cần tìm kiếm
 

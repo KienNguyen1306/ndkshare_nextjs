@@ -2,19 +2,27 @@
 import LoadingFetch from "@/components/Loadingfetch";
 import Comment from "@/components/comment";
 import Search from "@/components/search";
-import { getDetailGame } from "@/lib/modgameSlice";
+import { getComment, getDetailGame, postGameComment } from "@/lib/modgameSlice";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./modgame.css";
 import AlertsComponent from "@/components/AlertsComponent";
+import { usePagination } from "@/hook/usePagination";
+import Pagination from "@/components/Pagination";
 
 function ModGameDetail() {
   const params = useParams();
   const detail = useSelector((state) => state.modgame.gameDetail);
+  const { list, totalCountCmt, totalPagesCmt } = useSelector(
+    (state) => state.modgame.comments
+  );
+
   const loading = useSelector((state) => state.modgame.gameDetail.loading);
   const error = useSelector((state) => state.modgame.gameDetail.error);
 
+  const { currentPage, handleClickPage, handleNextPage, handlePrevPage } =
+    usePagination(totalPagesCmt, false);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,17 +30,32 @@ function ModGameDetail() {
   }, [dispatch, params.modgameid]);
 
   useEffect(() => {
+    dispatch(getComment({ id: params.modgameid, page: currentPage }));
+  }, [currentPage, dispatch, params.modgameid]);
+
+  useEffect(() => {
     if (detail?.name) {
       document.title = detail?.name;
     }
   }, [detail?.name]);
+
+  function handleComment(data) {
+    let res = {
+      cmt: data.textarea,
+      fullname: data.user.name,
+      image: data.user.image,
+      id_game: params.modgameid,
+      id_user: data.user.id,
+    };
+    dispatch(postGameComment(res))
+  }
   return (
     <div>
       <Search type={1} />
       {loading || error ? (
         <>
-        <LoadingFetch type="balls" loading={loading} />
-        {error && <AlertsComponent error={error}/>}
+          <LoadingFetch type="balls" loading={loading} />
+          {error && <AlertsComponent error={error} />}
         </>
       ) : (
         <div className="modgamedetai">
@@ -56,7 +79,18 @@ function ModGameDetail() {
               </a>
             </div>
           </div>
-          <Comment />
+          <Comment
+            list={list}
+            totalCountCmt={totalCountCmt}
+            handleComment={handleComment}
+          />
+          <Pagination
+            totalPages={totalPagesCmt}
+            handleClickpage={handleClickPage}
+            currentPage={currentPage}
+            handleNextPage={handleNextPage}
+            handlePrevPage={handlePrevPage}
+          />
         </div>
       )}
     </div>

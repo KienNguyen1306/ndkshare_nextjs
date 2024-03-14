@@ -5,17 +5,10 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
-  // const headersList = headers();
-  // const authorizationHeader = headersList.get("authorization");
 
   const cookieStore = cookies();
   const token = cookieStore.get("token");
   try {
-    //   if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
-    //     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-    //   }
-    //   const token = authorizationHeader.split("Bearer ")[1];
-
     if (!token) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }

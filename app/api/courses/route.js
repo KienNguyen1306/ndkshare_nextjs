@@ -5,7 +5,7 @@ export async function GET(request) {
   try {
 
     const page = parseInt(searchParams.get("page")) || 1;
-    const perPage =parseInt(searchParams.get("limit")) || 5; // Số mục trên mỗi trang
+    const perPage =parseInt(searchParams.get("limit")) || 10; // Số mục trên mỗi trang
     const offset = (page - 1) * perPage;
 
     // Truy vấn để lấy tổng số mục
@@ -18,7 +18,7 @@ export async function GET(request) {
 
     // Thực hiện truy vấn để lấy dữ liệu cho trang hiện tại
     const [results] = await connection.execute(
-      `SELECT * FROM courses ORDER BY id DESC LIMIT ${offset}, ${perPage}`
+      `SELECT * FROM courses WHERE active = 1 ORDER BY id DESC LIMIT ${offset}, ${perPage}`
     );
 
     // Trả về kết quả bao gồm cả tổng số trang và số mục trên mỗi trang

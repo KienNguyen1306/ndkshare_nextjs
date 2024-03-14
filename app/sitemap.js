@@ -1,7 +1,7 @@
 export default async function sitemap() {
   try {
     const responseGames = await fetch(
-      `${process.env.NEXT_BASE_URL}/api/modgames?page=1&limit=99999999`
+      `${process.env.NEXT_BASE_URL}/api/modgames?page=1&limit=99`
     );
     if (!responseGames.ok) {
       console.error('Error fetching data:', responseCourses);
@@ -11,12 +11,12 @@ export default async function sitemap() {
     const games = gamesData.data.map((item) => ({
       url: `${process.env.NEXT_BASE_URL}/modgame/${item.id}`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
+      // changeFrequency: "yearly",
+      // priority: 1,
     }));
 
     const responseCourses = await fetch(
-      `${process.env.NEXT_BASE_URL}/api/courses?page=1&limit=999999999`
+      `${process.env.NEXT_BASE_URL}/api/courses?page=1&limit=99`
     );
     if (!responseCourses.ok) {
     console.error('Error fetching data:', responseCourses);
@@ -25,8 +25,8 @@ export default async function sitemap() {
     const courses = coursesData.data.map((item) => ({
       url: `${process.env.NEXT_BASE_URL}/shareCourse/${item.id}`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
+      // changeFrequency: "yearly",
+      // priority: 1,
     }));
 
     const routes = ["", "/sharecourse", "/contact", "/login"].map((route) => ({
@@ -43,7 +43,6 @@ export default async function sitemap() {
     ];
   } catch (error) {
     console.error('Error fetching data:', error);
-    // Xử lý lỗi ở đây, có thể trả về một mảng rỗng hoặc thông báo lỗi
     return [];
   }
 }

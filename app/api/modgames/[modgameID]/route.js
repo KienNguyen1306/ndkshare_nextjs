@@ -7,13 +7,14 @@ export async function GET(request, params) {
     const [results] = await connection.execute(
       `SELECT * FROM modgames WHERE id = ${id}`
     );
+
     return NextResponse.json({ data: results[0] }, { status: 200 });
   } catch (err) {
     return NextResponse.error("Error message", 500);
   }
 }
 
-export async function DELETE(request,params) {
+export async function DELETE(request, params) {
   try {
     // Lấy id từ query parameter
     const id = params.params.modgameID;
@@ -42,8 +43,6 @@ export async function DELETE(request,params) {
   }
 }
 
-
-
 export async function PUT(request, params) {
   try {
     // Lấy id từ query parameter
@@ -54,7 +53,7 @@ export async function PUT(request, params) {
     }
 
     // Lấy dữ liệu cập nhật từ body của yêu cầu
-    const { image,name ,sub,link,version,mods} = requestData; // Đây là giả sử dữ liệu cần cập nhật là `newData`
+    const { image, name, sub, link, version, mods } = requestData; // Đây là giả sử dữ liệu cần cập nhật là `newData`
 
     // Kiểm tra xem có dữ liệu cần cập nhật không
     if (!image || !name || !sub || !link || !version || !mods) {
@@ -81,7 +80,7 @@ export async function PUT(request, params) {
     }
 
     return NextResponse.json(
-      { message: "Record updated successfully",status: 200 },
+      { message: "Record updated successfully", status: 200 },
       { status: 200 }
     );
   } catch (error) {

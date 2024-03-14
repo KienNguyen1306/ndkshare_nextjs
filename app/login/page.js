@@ -1,6 +1,6 @@
 "use client";
 import { getSession, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { IconLoading } from "../../components/Icon";
 import './login.css'
@@ -8,6 +8,9 @@ function Admin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams()
+ 
+  const search = searchParams.get('next')
   async function handleSignIn(e) {
     e.preventDefault();
     setLoading(true);
@@ -21,15 +24,11 @@ function Admin() {
         redirect: false,
       });
       if (result.ok) {
-        const session = await getSession();
         setLoading(false);
-        if (session && session.user) {
-          const userRole = session.user.role;
-          if (userRole === "admin") {
-            router.push("/admin");
-          } else {
-            router.push("/");
-          }
+        if(search){
+          router.push(search)
+        }else{
+          router.push('/')
         }
       } else {
         setLoading(false);
@@ -51,7 +50,7 @@ function Admin() {
             alt="Your Company"
           />
         </div>
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {error && (
             <div
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-1.5 rounded relative"

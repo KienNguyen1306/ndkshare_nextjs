@@ -46,6 +46,7 @@ const optionsNextauth = {
     },
     async jwt({ token, user }) {
       if (user) {
+        token.id = user.rows[0].id;
         token.username = user.rows[0].username;
         token.fullname = user.rows[0].fullname;
         token.image = user.rows[0].image;
@@ -66,6 +67,7 @@ const optionsNextauth = {
           image: token.image,
           fullname: token.fullname,
           role: token.role,
+          id:token.id
         },
       };
     },

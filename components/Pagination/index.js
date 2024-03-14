@@ -20,8 +20,8 @@ function Pagination({
             handlePrevPage(currentPage);
           }}
         >
-          <a
-            href="#"
+          <p
+           
             className="flex mb-2 items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             <svg
@@ -39,13 +39,13 @@ function Pagination({
                 d="M5 1 1 5l4 4"
               />
             </svg>
-          </a>
+          </p>
         </li>
         {pages.map((item, index) => {
           return (
             <li key={index} onClick={() => handleClickpage(item)}>
-              <a
-                href="#"
+              <p
+                
                 className={
                   currentPage === item
                     ? "flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border-blue-300 border bg-blue-100 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white mb-2"
@@ -53,7 +53,7 @@ function Pagination({
                 }
               >
                 {item}
-              </a>
+              </p>
             </li>
           );
         })}
@@ -62,8 +62,8 @@ function Pagination({
             handleNextPage(currentPage);
           }}
         >
-          <a
-            href="#"
+          <p
+           
             className="mb-2 flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             <svg
@@ -81,7 +81,7 @@ function Pagination({
                 d="m1 9 4-4-4-4"
               />
             </svg>
-          </a>
+          </p>
         </li>
       </ul>
     </nav>

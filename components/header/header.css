@@ -36,6 +36,16 @@
   align-items: center;
   gap: 10px;
 }
+.admin ul{
+  display: none;
+  top: 105%;
+  width: 130%;
+  z-index: 999999999999999999999999;
+}
+.admin:hover ul{
+  display: block;
+  transition: all 2s linear;
+}
 .admin .body img {
   width: 30px;
   height: 30px;
