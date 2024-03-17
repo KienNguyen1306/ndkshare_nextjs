@@ -1,31 +1,37 @@
+"use client";
+import { useEffect, useState } from "react";
 import "./videoitem.css";
+import ReactLoading from "react-loading";
 
 function VideoItem({ linkvideo }) {
+  const [loading, setloading] = useState(true);
+
+  function handleIframeLoad() {
+    setloading(false);
+  }
+
+  useEffect(() => {
+    setloading(true);
+  }, [linkvideo]);
   return (
-    // <div className="video">
-    //   <iframe
-    //   className="iframe_video"
-    //     width="640"
-    //     height="360"
-    //     src={item?.linkvideo}
-    //     title="YouTube video player"
-    //     frameBorder="0"
-    //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    //     allowFullScreen
-    //     loading="lazy"
-    //   ></iframe>
-    //   <h3 className="video_name">{item?.name}</h3>
-    // </div>
-    <div className="container">
-      <iframe
-        className="responsive-iframe"
-        src={linkvideo}
-        title="YouTube video player"
-        frameBorder="0"
-        allowFullScreen
-        loading="lazy"
-      ></iframe>
-    </div>
+    <>
+      {loading && (
+        <div className="flex justify-center items-center h-96">
+          <ReactLoading type="cylon" color="#1d4ed8" />
+        </div>
+      )}
+      <div className="container">
+        <iframe
+          className="responsive-iframe"
+          src={linkvideo}
+          title="YouTube video player"
+          frameBorder="0"
+          allowFullScreen
+          style={{ display: loading ? "none" : "block" }}
+          onLoad={handleIframeLoad}
+        ></iframe>
+      </div>
+    </>
   );
 }
 

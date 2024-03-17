@@ -9,10 +9,13 @@ import Search from "@/components/search";
 import ItemMain from "@/components/item";
 import Pagination from "@/components/Pagination";
 
-
 function SearchPage() {
   const dispatch = useDispatch();
-  const {lists:datas,totalPages,totalCount:totalItems} = useSelector((state) => state.modgame.searchgame);
+  const {
+    lists: datas,
+    totalPages,
+    totalCount: totalItems,
+  } = useSelector((state) => state.modgame.searchgame);
   const searchParams = useSearchParams();
   let k = searchParams.get("k");
   let type = searchParams.get("type");
@@ -20,14 +23,14 @@ function SearchPage() {
     usePagination();
 
   useEffect(() => {
-    if(type === '1')dispatch(getSearchGame({ k: k, page: currentPage }));
-    if(type === '2')dispatch(getSearchCourese({ k: k, page: currentPage }));
+    if (type === "1") dispatch(getSearchGame({ k: k, page: currentPage }));
+    if (type === "2") dispatch(getSearchCourese({ k: k, page: currentPage }));
   }, [currentPage, dispatch, k, type]);
   return (
     <div className="products colums">
       <Search type={type} />
       <h5>
-        GAME MOD BY NDK : Có : {totalItems} Kết quả tìm kiếm từ {k}
+        Có : {totalItems} Kết quả tìm kiếm từ {k}
       </h5>
       <div className="body">
         {datas.map((item, index) => {

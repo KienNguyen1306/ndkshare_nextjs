@@ -8,7 +8,7 @@ export async function GET(request, params) {
   try {
     let id = params.params.modgameID;
     const page = parseInt(searchParams.get("page")) || 1;
-    const perPage = parseInt(searchParams.get("limit")) || 3; // Số mục trên mỗi trang
+    const perPage = parseInt(searchParams.get("limit")) || 10; // Số mục trên mỗi trang
     const offset = (page - 1) * perPage;
     // // Truy vấn để lấy tổng số mục
     const [countComments] = await connection.execute(

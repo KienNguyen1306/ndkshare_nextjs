@@ -58,7 +58,7 @@ function CoureseDetail() {
         <h2 className="mb-4">{dataCoures[0]?.name}</h2>
         <LoadingFetch type="bars" loading={loading} />
         {error && <AlertsComponent error={error} />}
-        <VideoItem linkvideo={detailLession?.linkvideo} />
+        {!loading && <VideoItem linkvideo={detailLession?.linkvideo} />}
         <h2 className=" mt-10">{detailLession?.name}</h2>
       </div>
       <h2 className="title_h2 mt-10 mb-10">Danh sách các bài học :</h2>
