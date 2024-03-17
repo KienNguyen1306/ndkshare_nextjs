@@ -1,5 +1,5 @@
 .products.colums .body {
-  display: block;
+  display: block !important;
 }
 
 .products .body {

@@ -8,7 +8,10 @@ const nextConfig = {
     SECRET_KEY: process.env.SECRET_KEY,
     AUTH_SECRET: process.env.AUTH_SECRET,
     NEXT_BASE_URL: process.env.NEXT_BASE_URL,
-  }
+  },
+  api: {
+    bodyParser: false,
+  },
 };
 
 export default nextConfig;
