@@ -3,7 +3,6 @@ import { useState } from "react";
 export function usePagination(totalPages,scroll) {
   const [currentPage, setCurrentPage] = useState(1);
   const handleClickPage = (page) => {
-    console.log('scroll',scroll)
     if(scroll===true){
       window.scrollTo({top: 0, behavior: 'smooth'})
     }

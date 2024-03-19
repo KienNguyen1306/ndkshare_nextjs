@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import "./header.css";
+import { useRouter } from "next/navigation";
 function Header() {
   const [show, setShow] = useState(false);
   const { data: session } = useSession();
 
-  
+  const router = useRouter();
   function handleClick() {
     setShow(!show);
   }
@@ -68,7 +69,11 @@ function Header() {
               )}
               <li
                 className="cursor-pointer hover:bg-slate-300 p-2"
-                onClick={() => signOut()}
+                onClick={() =>
+                  signOut({ redirect: false }).then(() => {
+                    router.push("/");
+                  })
+                }
               >
                 Đăng xuất
               </li>

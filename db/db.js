@@ -14,7 +14,6 @@ try {
     // database: "freedb_ndkshare",
     // password: "qkgBV52ZtnDz!UM",
   });
-  console.log("Connected to MySQL database!");
 } catch (error) {
   console.error("Failed to connect to MySQL:", error);
 }

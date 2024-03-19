@@ -203,3 +203,27 @@ export async function GET(request) {
     getUser(setUser);
   }, []);
   ============================================= -->
+
+
+
+  
+          // const { username, password } = credentials;
+          // const [rows] = await connection.execute(
+          //   `SELECT * FROM users WHERE username = "${username}" AND password = "${password}"`
+          // );
+          // if (rows.length > 0) {
+          //   const assetToken = jwt.sign(
+          //     { username },
+          //     `${process.env.SECRET_KEY}`,
+          //     { expiresIn: "1h" }
+          //   );
+          //   const resetToken = jwt.sign(
+          //     { username },
+          //     `${process.env.SECRET_KEY}`,
+          //     { expiresIn: "1d" }
+          //   );
+          //   return { assetToken, resetToken, rows };
+          // } else {
+          //   return null;
+          // }
+          console.log("res", response.status);

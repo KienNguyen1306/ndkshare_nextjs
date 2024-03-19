@@ -21,7 +21,6 @@ function PutGame() {
     let credentials = { image, name, sub, link, version, mods };
     putModGame(credentials,gameid).then((res) => {
       if (res.status===200) {
-        console.log(res)
         router.push('/admin')
       }
       setLoading(false);

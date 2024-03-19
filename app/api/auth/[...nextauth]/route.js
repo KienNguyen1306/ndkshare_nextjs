@@ -67,7 +67,7 @@ const optionsNextauth = {
           image: token.image,
           fullname: token.fullname,
           role: token.role,
-          id:token.id
+          id: token.id,
         },
       };
     },
@@ -77,7 +77,7 @@ const optionsNextauth = {
   },
   session: {
     jwt: true,
-    maxAge: 10 * 60, 
+    maxAge: 1 * 60,
   },
 };
 
