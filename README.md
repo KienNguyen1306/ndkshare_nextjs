@@ -227,3 +227,196 @@ export async function GET(request) {
           //   return null;
           // }
           console.log("res", response.status);
+
+
+
+
+  =====================================
+  "use client";
+
+import { IconLoading } from "@/components/Icon";
+import "../login/login.css";
+import axios from "axios";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+function Page() {
+  const [mesError, setMesError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams.get("next");
+
+  async function register(e) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username");
+    const password = formData.get("password");
+    const fullname = formData.get("fullname");
+    const email = formData.get("email");
+    if (username.length < 2 || username.includes(" ")) {
+      setMesError("Tên dăng nhập phải có ít nhất 7 ký tự.");
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setMesError("Mật khẩu phải có ít nhất 6 ký tự.");
+      setLoading(false);
+      return;
+    }
+
+    // Kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMesError("Vui lòng nhập địa chỉ email hợp lệ.");
+      setLoading(false);
+      return;
+    }
+
+    // Kiểm tra fullname có tồn tại không
+    if (!fullname.trim()) {
+      setMesError("Vui lòng nhập họ và tên.");
+      setLoading(false);
+      return;
+    }
+    let credentials = { username, password, email, fullname };
+    const res = await axios.post("/api/user/register", credentials);
+    if (!res.data?.error) {
+      const result = await signIn("credentials", {
+        ...credentials,
+        redirect: false,
+      });
+      if (result.ok) {
+        if (search) {
+          router.push(search);
+        } else {
+          router.push("/");
+        }
+      }
+    } else {
+      setMesError(res.data.error.message);
+      setLoading(false);
+    }
+  }
+  return (
+    <div className="h-auto bg-gradient-to-r from-cyan-500">
+      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-7">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img
+            className="mx-auto h-150 w-500"
+            src="/image/ndk.png"
+            alt="Your Company"
+          />
+        </div>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          {mesError && (
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-1.5 rounded relative"
+              role="alert"
+            >
+              <span className="block sm:inline">{mesError}</span>
+            </div>
+          )}
+
+          <form
+            onSubmit={register}
+            className="mt-10 form_login space-y-6 border rounded-md border-solid border-black p-10"
+          >
+            <div>
+              <label
+                htmlFor="fullname"
+                className="text-white block text-sm font-medium leading-6 text-gray-900"
+              >
+                Họ và tên
+              </label>
+              <div className="mt-2">
+                <input
+                  id="fullname"
+                  name="fullname"
+                  type="text"
+                  autoComplete="email"
+                  required=""
+                  className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="username"
+                className="text-white block text-sm font-medium leading-6 text-gray-900"
+              >
+                Tên đăng nhập
+              </label>
+              <div className="mt-2">
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="email"
+                  required=""
+                  className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="text-white block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  autoComplete="email"
+                  required=""
+                  className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="text-white block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required=""
+                  className="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                {loading ? (
+                  <div role="status">
+                    <IconLoading />
+                  </div>
+                ) : (
+                  "Đăng kí"
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Page;

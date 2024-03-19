@@ -10,11 +10,11 @@ function LayoutDetail({ children }) {
     return <AdminLayout>{children}</AdminLayout>;
   }
 
-  if (pathname.startsWith("/login")) {
+  if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
     return (
       <html lang="en">
         <body>
-          <div className="main-body">{children}</div>
+          <div className="">{children}</div>
         </body>
       </html>
     );
