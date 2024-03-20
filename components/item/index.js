@@ -21,7 +21,7 @@ function ItemMain({ collum, item }) {
         <h6 className="name line-clamp-2">{item?.name} </h6>
         {!collum && <p className="sub line-clamp-2"> sub: {item?.sub}</p>}
         {item?.cate === "game" && (
-          <p className="sub line-clamp-2"> Mod: {item?.mods}</p>
+          <p className="sub line-clamp-1"> Mod: {item?.mods}</p>
         )}
       </div>
     </div>

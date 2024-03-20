@@ -79,19 +79,19 @@ function ModGameDetail() {
               </a>
             </div>
           </div>
-          {totalPagesCmt > 1 &&  <Comment
+          {totalPagesCmt > 0 &&  <Comment
             list={list}
             totalCountCmt={totalCountCmt}
             handleComment={handleComment}
           />}
-         
-          <Pagination
+         {totalPagesCmt > 1 && <Pagination
             totalPages={totalPagesCmt}
             handleClickpage={handleClickPage}
             currentPage={currentPage}
             handleNextPage={handleNextPage}
             handlePrevPage={handlePrevPage}
-          />
+          />}
+          
         </div>
       )}
     </div>
