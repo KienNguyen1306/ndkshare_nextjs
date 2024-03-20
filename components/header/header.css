@@ -22,7 +22,6 @@
 
 .header_nav-item {
   display: flex;
-  align-items: center;
   gap: 20px;
 }
 .header_nav-item a {
@@ -59,7 +58,6 @@
 
 .admin.mobie {
   display: none;
-  padding: 20px;
 }
 .admin.mobie .body {
   justify-content: center;
@@ -94,6 +92,6 @@
   }
   .header_nav-item {
     flex-direction: column;
-    padding: 30px;
+    padding: 28px;
   }
 }

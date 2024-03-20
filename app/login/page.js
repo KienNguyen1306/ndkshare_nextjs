@@ -3,14 +3,15 @@ import { getSession, signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { IconLoading } from "../../components/Icon";
-import './login.css'
+import "./login.css";
+import Link from "next/link";
 function Admin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams()
- 
-  const search = searchParams.get('next')
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get("next");
   async function handleSignIn(e) {
     e.preventDefault();
     setLoading(true);
@@ -25,10 +26,10 @@ function Admin() {
       });
       if (result.ok) {
         setLoading(false);
-        if(search){
-          router.push(search)
-        }else{
-          router.push('/')
+        if (search) {
+          router.push(search);
+        } else {
+          router.push("/");
         }
       } else {
         setLoading(false);
@@ -43,13 +44,13 @@ function Admin() {
   return (
     <div className="h-screen bg-gradient-to-r from-cyan-500">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-7">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <Link href="/" className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-150 w-500"
             src="/image/ndk.png"
             alt="Your Company"
           />
-        </div>
+        </Link>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {error && (
             <div
@@ -62,7 +63,10 @@ function Admin() {
             </div>
           )}
 
-          <form className="mt-10 form_login space-y-6 border rounded-md border-solid border-black p-10" onSubmit={handleSignIn}>
+          <form
+            className="mt-10 form_login space-y-6 border rounded-md border-solid border-black p-10"
+            onSubmit={handleSignIn}
+          >
             <div>
               <label
                 htmlFor="email"
@@ -119,8 +123,16 @@ function Admin() {
                     <IconLoading />
                   </div>
                 ) : (
-                  " Sign in"
+                  "Đăng nhập"
                 )}
+              </button>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                <Link href="/register">Đăng kí</Link>
               </button>
             </div>
           </form>

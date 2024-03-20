@@ -24,20 +24,29 @@ function Header() {
         </div>
         <nav className={`header_nav ${show ? "" : "show"}`}>
           {session ? (
-            <div className="admin mobie">
+            <div className="admin mobie p-5">
               <div className="body">
                 <img src={session?.user?.image} alt="icon" />
                 <div className="admin-name">{session?.user?.fullname}</div>
               </div>
             </div>
           ) : (
-            <Link
-              href="/login"
-              type="button"
-              className="text-white admin mobie"
-            >
-              Đăng nhập
-            </Link>
+            <div>
+              <Link
+                href="/login"
+                type="button"
+                className="text-white admin mobie px-7 py-5"
+              >
+                Đăng nhập
+              </Link>
+              <Link
+                href="/register"
+                type="button"
+                className="text-white admin mobie px-7"
+              >
+                Đăng kí
+              </Link>
+            </div>
           )}
 
           <ul className="header_nav-item">
@@ -80,9 +89,15 @@ function Header() {
             </ul>
           </div>
         ) : (
-          <Link href="/login" type="button" className="text-white">
-            Đăng nhập
-          </Link>
+          <div className="admin flex gap-2">
+            <Link href="/login" type="button" className="text-white">
+              Đăng nhập
+            </Link>
+            <div className="text-white"> | </div>
+            <Link href="/register" type="button" className=" text-white">
+              Đăng Kí
+            </Link>
+          </div>
         )}
 
         <div className="bar_menu">

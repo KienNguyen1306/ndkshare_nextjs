@@ -9,8 +9,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaRegister } from "@/lib/schema/schema";
-
-
+import Link from "next/link";
 
 function Page() {
   const [mesError, setMesError] = useState(null);
@@ -27,19 +26,36 @@ function Page() {
     resolver: yupResolver(schemaRegister),
   });
   const onSubmit = async (data) => {
-    console.log(data);
-    // Do something with the data (e.g., submit to backend)
+    setLoading(true);
+    const res = await axios.post("/api/user/register", data);
+    if (res.data.status === 201) {
+      const result = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+      if (result.ok) {
+        setLoading(false);
+        if (search) {
+          router.push(search);
+        } else {
+          router.push("/");
+        }
+      }
+    } else {
+      setLoading(false);
+      setMesError(res.data.error);
+    }
   };
   return (
     <div className="h-auto bg-gradient-to-r from-cyan-500">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-7">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <Link href='/' className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-150 w-500"
             src="/image/ndk.png"
             alt="Your Company"
           />
-        </div>
+        </Link>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {mesError && (
             <div
@@ -74,7 +90,7 @@ function Page() {
                 {errors.fullname && (
                   <p className="text-red-500 text-xs italic pt-2">
                     {errors.fullname.message}
-                  </ p>
+                  </p>
                 )}
               </div>
             </div>
@@ -119,7 +135,7 @@ function Page() {
                   {...register("email")}
                   className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                
+
                 {errors.email && (
                   <p className="text-red-500 text-xs italic pt-2">
                     {errors.email.message}
@@ -146,10 +162,10 @@ function Page() {
                   {...register("password")}
                   className="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0.5 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-               {errors.password && (
+                {errors.password && (
                   <p className="text-red-500 text-xs italic pt-2">
                     {errors.password.message}
-                  </ p>
+                  </p>
                 )}
               </div>
             </div>
@@ -165,6 +181,14 @@ function Page() {
                 ) : (
                   "Đăng kí"
                 )}
+              </button>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Đăng nhập
               </button>
             </div>
           </form>

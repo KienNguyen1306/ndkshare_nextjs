@@ -77,7 +77,7 @@ const optionsNextauth = {
   },
   session: {
     jwt: true,
-    maxAge: 1 * 60,
+    maxAge: 60 * 60,
   },
 };
 
